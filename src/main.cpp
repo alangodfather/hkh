@@ -31,7 +31,7 @@ void timedmove(int time){
 void millisdrive(int time){
 	int st = millis();
 	while(time > millis() - st){
-		Powerdrive(0,0);
+		Powerdrive(60,0);
 	}
 	Powerdrive(0,0);
 }
