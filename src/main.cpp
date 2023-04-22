@@ -19,15 +19,13 @@ void Powerdrive(int powerforward, int powerturning){
 	right_3 = powerforward - powerturning;
  	left_4 = powerforward + powerturning;
 	right_4 = powerforward - powerturning;
+}
 
 
-
-
-
-
-
-
-
+void timedmove(int time){
+	Powerdrive(60,0);
+	delay(time);
+	Powerdrive(0,0);
 }
 /**
  * A callback function for LLEMU's center button.
