@@ -27,6 +27,14 @@ void timedmove(int time){
 	delay(time);
 	Powerdrive(0,0);
 }
+
+void millisdrive(int time){
+	int st = millis();
+	while(time > millis() - st){
+		Powerdrive(0,0);
+	}
+	Powerdrive(0,0);
+}
 /**
  * A callback function for LLEMU's center button.
  *
