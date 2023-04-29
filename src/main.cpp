@@ -101,6 +101,7 @@ void autonomous() {}
 void opcontrol() {
 	Controller master(pros::E_CONTROLLER_MASTER);
 	
+	millisdrive(200);
 
 	while (true) {
 		int yaxis = master.get_analog(ANALOG_LEFT_Y);
