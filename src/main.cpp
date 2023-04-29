@@ -28,10 +28,18 @@ void timedmove(int time){
 	Powerdrive(0,0);
 }
 
-void millisdrive(int time){
+void millisdrive(int time, int power){
 	int st = millis();
 	while(time > millis() - st){
-		Powerdrive(60,0);
+		Powerdrive(60*power,0 );
+	}
+	Powerdrive(0,0);
+}
+
+void turning(int time, int turnp){
+	int st = millis();
+	while(time > millis() - st){
+		Powerdrive(0,60*turnp);
 	}
 	Powerdrive(0,0);
 }
@@ -101,7 +109,32 @@ void autonomous() {}
 void opcontrol() {
 	Controller master(pros::E_CONTROLLER_MASTER);
 	
-	millisdrive(200);
+	millisdrive(2100,1);
+	delay(1000);
+	turning(240,1);
+	delay(1000);
+	millisdrive(2700,1);
+	delay(1000);
+	turning(260,-1);
+	delay(1000);
+	turning(515,-1);
+	delay(1000);
+	millisdrive(1400,-1);
+	delay(1000);
+	millisdrive(100,1);
+	delay(1000);
+	turning(430,1);
+	delay(500);
+	millisdrive(600,-1);
+	delay(1000);
+	turning(240,1);
+	delay(1000);
+	millisdrive(3500,-1);
+	delay(1000);
+	turning(150,1);
+	delay(500);
+	millisdrive(300,-1);
+
 
 	while (true) {
 		int yaxis = master.get_analog(ANALOG_LEFT_Y);
