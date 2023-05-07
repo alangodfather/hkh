@@ -7,6 +7,7 @@
 	Motor right_3(19);
 	Motor left_4(-14, 1);
 	Motor right_4(20);
+
 	Imu inertial(21);
 
 /**
@@ -25,7 +26,7 @@
  */
 void initialize() {
 	delay(500);
-	intertial.reset();
+	inertial.reset();
 }
 
 /**
@@ -74,7 +75,24 @@ void autonomous() {}
  */
 void opcontrol() {
 	Controller master(pros::E_CONTROLLER_MASTER);
-	
+	drive(1150);
+	turn(85);
+	inertial.reset();
+	drive(400);
+	drive;(-750);
+	inertial.reset();
+	turn(270);
+	delay(500);
+	inertial.reset();
+	drive(-6000);
+
+
+
+
+
+
+
+	/*
 	millisdrive(2100,1);
 	delay(1000);
 	turning(240,1);
@@ -100,6 +118,7 @@ void opcontrol() {
 	turning(150,1);
 	delay(500);
 	millisdrive(300,-1);
+	*/
 
 
 	while (true) {

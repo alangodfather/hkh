@@ -1,14 +1,4 @@
 #include "main.h"
-	Motor left_1(-11, 1);
-	Motor right_1(17);
-	Motor left_2(-12, 1);
-	Motor right_2(18);
-	Motor left_3(-13, 1);
-	Motor right_3(19);
-	Motor left_4(-14, 1);
-	Motor right_4(20);
-	Imu inertial(21);
-
 
 
 void Powerdrive(int powerforward, int powerturning){
@@ -46,24 +36,25 @@ void turning(int time, int turnp){
 	Powerdrive(0,0);
 }
 void turn(int target){
-    while(fabs(target - intertial.get_rotation()) > 2 ){
-        if(target > intertial.get_rotation()){
-            Powerdrive(0,10);
-        }else if(target < intertial.get_rotation()){
-            Powerdrive(0,-10);
+    while(fabs(target - inertial.get_rotation()) > 0.5){
+        if(target > inertial.get_rotation()){
+            Powerdrive(0,25);
+        }else if(target < inertial.get_rotation()){
+            Powerdrive(0,-25);
 
         }
-    }
+    }Powerdrive(0,0);
 }
 void drive(int target){
+	left_1.tare_position();
     while(abs(target - left_1.get_position()) > 2 ){
         if(target > left_1.get_position()){
-            Powerdrive(10,0);
+            Powerdrive(25,0);
         }else if(target < left_1.get_position()){
-            Powerdrive(-10,0);
+            Powerdrive(-25,0);
 
         }
-    }
+    }Powerdrive(0,0);
 
 
 

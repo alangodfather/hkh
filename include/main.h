@@ -35,7 +35,7 @@
 #define PROS_USE_LITERALS
 
 #include "api.h"
-#include "fuctions.h"
+#include "function.hpp"
 /**
  * You should add more #includes here
  */
@@ -80,4 +80,15 @@ void opcontrol(void);
 
 #endif  // _PROS_MAIN_H_
 
-extern Imu intertial;
+extern Imu inertial;
+
+extern Motor left_1;
+extern Motor right_1;
+extern Motor left_2;
+extern Motor right_2;
+extern Motor left_3;
+extern Motor right_3;
+extern Motor left_4;
+extern Motor right_4;
+
+
