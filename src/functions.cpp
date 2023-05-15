@@ -1,4 +1,5 @@
 #include "main.h"
+#include "math.h"
 
 
 void Powerdrive(int powerforward, int powerturning){
@@ -38,9 +39,9 @@ void turning(int time, int turnp){
 void turn(int target){
     while(fabs(target - inertial.get_rotation()) > 0.5){
         if(target > inertial.get_rotation()){
-            Powerdrive(0,25);
+            Powerdrive(0,30);
         }else if(target < inertial.get_rotation()){
-            Powerdrive(0,-25);
+            Powerdrive(0,-30);
 
         }
     }Powerdrive(0,0);
@@ -49,16 +50,41 @@ void drive(int target){
 	left_1.tare_position();
     while(abs(target - left_1.get_position()) > 2 ){
         if(target > left_1.get_position()){
-            Powerdrive(25,0);
+            Powerdrive(30,0);
         }else if(target < left_1.get_position()){
-            Powerdrive(-25,0);
+            Powerdrive(-30,0);
 
         }
     }Powerdrive(0,0);
 
+}
+double InchtoTick(int distance){
+	double external = (double)3/5; 
+	double internal = 300;
+	double diameter = 3.25; 
+	double PI = 3.14;
 
+	return  (distance*internal*external/diameter*PI); 
+}
+void PDIdrive (int inches, double kP, double kI, double kD){
+	double target = InchtoTick(inches);
+	double error = target-left_1.get_position();
+	int power;
+	int integral;
+	int past_error;
+	int derivative;
+	while(fabs(target-left_1.get_position())> 2){
+		past_error = error; 
+		error = target-left_1.get_position();
+		derivative = error-past_error;
 
+		if(fabs(target-left_1.get_position())<10){
+			integral += error;
 
+		}
 
-
+		power = error*kP + integral*kI + derivative*kD;
+		Powerdrive(power,0);
+	}
+	Powerdrive(0,0);
 }

@@ -75,16 +75,33 @@ void autonomous() {}
  */
 void opcontrol() {
 	Controller master(pros::E_CONTROLLER_MASTER);
-	drive(1150);
-	turn(85);
+	PDIdrive(10,0.225,0.001,0.5);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	drive(1050);
+	turn(80);
 	inertial.reset();
-	drive(400);
-	drive;(-750);
+	drive(-550);
+	delay(1000);
+	drive;(550);
+	turn(125);
 	inertial.reset();
-	turn(270);
+	/*
 	delay(500);
-	inertial.reset();
 	drive(-6000);
+	*/
+
 
 
 
