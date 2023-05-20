@@ -64,7 +64,7 @@ double InchtoTick(int distance){
 	double diameter = 3.25; 
 	double PI = 3.14;
 
-	return  (distance*internal*external/diameter*PI); 
+	return  (distance*internal*external/diameter/PI); 
 }
 void PDIdrive (int inches, double kP, double kI, double kD){
 	double target = InchtoTick(inches);
