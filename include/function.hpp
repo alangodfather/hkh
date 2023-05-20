@@ -9,4 +9,6 @@ void turn(int target);
 void drive(int target);
 double InchtoTicks(int distance);
 void PDIdrive (int inches, double kP, double kI, double kD);
+void PDIturn (int degrees, double kP, double kI, double kD);
+
 #endif

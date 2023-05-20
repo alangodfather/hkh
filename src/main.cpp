@@ -75,7 +75,7 @@ void autonomous() {}
  */
 void opcontrol() {
 	Controller master(pros::E_CONTROLLER_MASTER);
-	PDIdrive(10,0.225,0.001,0.5);
+	PDIturn(90,0.225,0.001,0.5);
 	
 	
 	

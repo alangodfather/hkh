@@ -68,23 +68,43 @@ double InchtoTick(int distance){
 }
 void PDIdrive (int inches, double kP, double kI, double kD){
 	double target = InchtoTick(inches);
-	double error = target-left_1.get_position();
+	double difference = target-left_1.get_position();
 	int power;
 	int integral;
-	int past_error;
+	int past_difference;
 	int derivative;
 	while(fabs(target-left_1.get_position())> 2){
-		past_error = error; 
-		error = target-left_1.get_position();
-		derivative = error-past_error;
+		past_difference = difference; 
+		difference = target-left_1.get_position();
+		derivative = difference-past_difference;
 
 		if(fabs(target-left_1.get_position())<10){
-			integral += error;
-
+			integral += difference;
 		}
 
-		power = error*kP + integral*kI + derivative*kD;
+		power = difference*kP + integral*kI + derivative*kD;
 		Powerdrive(power,0);
+	}
+	Powerdrive(0,0);
+}
+
+void PDIturn (int degrees, double kP, double kI, double kD){
+	double difference = degrees-inertial.get_rotation();
+	int power;
+	int integral;
+	int past_difference;
+	int derivative;
+	while(fabs(degrees-inertial.get_rotation())>0.5){
+		past_difference = difference; 
+		difference = degrees-inertial.get_rotation();
+		derivative = difference-past_difference;
+
+		if(fabs(degrees-inertial.get_rotation())<5){
+			integral += difference;
+		}
+
+		power = difference*kP + integral*kI + derivative*kD;
+		Powerdrive(0,power);
 	}
 	Powerdrive(0,0);
 }
