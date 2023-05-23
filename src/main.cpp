@@ -27,6 +27,7 @@
 void initialize() {
 	delay(500);
 	inertial.reset();
+	delay(1000);
 }
 
 /**
@@ -58,7 +59,9 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
+	PDIturn(-90,1.8,0,1);
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -75,7 +78,7 @@ void autonomous() {}
  */
 void opcontrol() {
 	Controller master(pros::E_CONTROLLER_MASTER);
-	PDIturn(90,0.225,0.001,0.5);
+	
 	
 	
 	
