@@ -99,7 +99,7 @@ void PDIturn (int degrees, double kP, double kI, double kD){
 		difference = degrees-inertial.get_rotation();
 		derivative = difference-past_difference;
 
-		if(fabs(degrees-inertial.get_rotation())<5){
+		if(fabs(degrees-inertial.get_rotation())<2.5){
 			integral += difference;
 		}
 
