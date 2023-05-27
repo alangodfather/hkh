@@ -1,14 +1,14 @@
 #include "main.h"
 #include "math.h"
 void BrakeOn(){
-	left_1.set_brake_mode(MOTOR_BRAKE_BRAKE);
-	left_2.set_brake_mode(MOTOR_BRAKE_BRAKE);
-	left_3.set_brake_mode(MOTOR_BRAKE_BRAKE);
-	left_4.set_brake_mode(MOTOR_BRAKE_BRAKE);
-	right_1.set_brake_mode(MOTOR_BRAKE_BRAKE);
-	right_2.set_brake_mode(MOTOR_BRAKE_BRAKE);
-	right_3.set_brake_mode(MOTOR_BRAKE_BRAKE);
-	right_4.set_brake_mode(MOTOR_BRAKE_BRAKE);
+	left_1.set_brake_mode(MOTOR_BRAKE_HOLD);
+	left_2.set_brake_mode(MOTOR_BRAKE_HOLD);
+	left_3.set_brake_mode(MOTOR_BRAKE_HOLD);
+	left_4.set_brake_mode(MOTOR_BRAKE_HOLD);
+	right_1.set_brake_mode(MOTOR_BRAKE_HOLD);
+	right_2.set_brake_mode(MOTOR_BRAKE_HOLD);
+	right_3.set_brake_mode(MOTOR_BRAKE_HOLD);
+	right_4.set_brake_mode(MOTOR_BRAKE_HOLD);
 }
 void BrakeOff(){
 	left_1.set_brake_mode(MOTOR_BRAKE_COAST);
