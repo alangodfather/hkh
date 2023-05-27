@@ -10,5 +10,5 @@ void drive(int target);
 double InchtoTicks(int distance);
 void PDIdrive (int inches, double kP, double kI, double kD);
 void PDIturn (int degrees, double kP, double kI, double kD);
-
+int SpeedCap(int speed);
 #endif
