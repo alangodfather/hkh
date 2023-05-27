@@ -1,6 +1,25 @@
 #include "main.h"
 #include "math.h"
-
+void BrakeOn(){
+	left_1.set_brake_mode(MOTOR_BRAKE_BRAKE);
+	left_2.set_brake_mode(MOTOR_BRAKE_BRAKE);
+	left_3.set_brake_mode(MOTOR_BRAKE_BRAKE);
+	left_4.set_brake_mode(MOTOR_BRAKE_BRAKE);
+	right_1.set_brake_mode(MOTOR_BRAKE_BRAKE);
+	right_2.set_brake_mode(MOTOR_BRAKE_BRAKE);
+	right_3.set_brake_mode(MOTOR_BRAKE_BRAKE);
+	right_4.set_brake_mode(MOTOR_BRAKE_BRAKE);
+}
+void BrakeOff(){
+	left_1.set_brake_mode(MOTOR_BRAKE_COAST);
+	left_2.set_brake_mode(MOTOR_BRAKE_COAST);
+	left_3.set_brake_mode(MOTOR_BRAKE_COAST);
+	left_4.set_brake_mode(MOTOR_BRAKE_COAST);
+	right_1.set_brake_mode(MOTOR_BRAKE_COAST);
+	right_2.set_brake_mode(MOTOR_BRAKE_COAST);
+	right_3.set_brake_mode(MOTOR_BRAKE_COAST);
+	right_4.set_brake_mode(MOTOR_BRAKE_COAST);
+}
 
 void Powerdrive(int powerforward, int powerturning){
 
