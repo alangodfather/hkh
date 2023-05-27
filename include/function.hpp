@@ -1,6 +1,9 @@
 #ifndef _FUNCTIONS_HPP_
 #define _FUNCTIONS_HPP_
 
+
+void BrakeOn();
+void BrakeOff();
 void Powerdrive(int powerforward, int powerturning);
 void timedmove(int time);
 void millisdrive(int time, int power);
