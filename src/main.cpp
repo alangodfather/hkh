@@ -80,14 +80,14 @@ void autonomous() {
  */
 void opcontrol() {
 	Controller master(pros::E_CONTROLLER_MASTER);
-	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", left_1.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", left_2.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", left_3.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", left_4.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", right_1.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", right_2.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", right_3.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", right_4.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 1, "Temperature left 1 : %f", left_1.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 2, "Temperature left 2: %f", left_2.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 3, "Temperature left 3: %f", left_3.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 4, "Temperature left 4: %f", left_4.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 5, "Temperature right 1 : %f", right_1.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 6, "Temperature right 2: %f", right_2.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 7, "Temperature right 3: %f", right_3.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 8, "Temperature right 4: %f", right_4.get_temperature());
 	
 	
 	
