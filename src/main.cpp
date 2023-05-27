@@ -80,6 +80,14 @@ void autonomous() {
  */
 void opcontrol() {
 	Controller master(pros::E_CONTROLLER_MASTER);
+	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", left_1.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", left_2.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", left_3.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", left_4.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", right_1.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", right_2.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", right_3.get_temperature());
+	pros::screen::print(TEXT_MEDIUM, 3, "Seconds Passed: %3d", right_4.get_temperature());
 	
 	
 	

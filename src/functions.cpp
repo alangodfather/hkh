@@ -85,7 +85,7 @@ void PDIdrive (int inches, double kP, double kI, double kD){
 		power = difference*kP + integral*kI + derivative*kD;
 		Powerdrive(power,0);
 	}
-	Powerdrive(0,0);
+	Powerdrive(SpeedCap(power),0);
 }
 
 void PDIturn (int degrees, double kP, double kI, double kD){
@@ -121,3 +121,6 @@ int SpeedCap(int speed){
 		return limit;
 	}
 }
+
+
+
