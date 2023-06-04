@@ -141,5 +141,51 @@ int SpeedCap(int speed){
 	}
 }
 
+void PIDdrive(int inches, double kP, double kI, double kD){
+	double target = InchtoTick(inches);
+	double difference = target-left_1.get_position();
+	int power;
+	int integral;
+	int past_difference;
+	int derivative;
+	
+	//turning
+	double degrees = inertial.get_rotation();
+	int r_power;
+	int r_integral;
+	int r_past_difference;
+	int r_derivative;
+	int r_difference;
+	double r_kP = 0.0005;
+	double r_kI = 0;
+	double r_kD = 0;
+	while(abs(target-left_1.get_position())> 2 || (abs(degrees-inertial.get_rotation())>0.2)){
+		//derivative
+		past_difference = difference; 
+		difference = target-left_1.get_position();
+		derivative = difference-past_difference;
 
+		if(abs(target-left_1.get_position())<10){
+			integral += difference;
+		}
+
+		power = difference*kP + integral*kI + derivative*kD;
+		//turning
+		r_past_difference = r_difference; 
+		r_difference = degrees-inertial.get_rotation();
+		r_derivative = r_difference-past_difference; 
+
+		if(abs(degrees-inertial.get_rotation())<2.5){
+			r_integral += r_difference;
+		}
+
+		r_power = r_difference*r_kP + r_integral*r_kI + r_derivative*r_kD;
+		Powerdrive(power,r_power);
+	}
+	
+	
+	Powerdrive(0,0);
+
+
+}
 
