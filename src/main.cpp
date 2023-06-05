@@ -1,14 +1,12 @@
 #include "main.h"
-	Motor left_1(-11, 1);
-	Motor right_1(17);
-	Motor left_2(-12, 1);
-	Motor right_2(18);
-	Motor left_3(-13, 1);
-	Motor right_3(19);
-	Motor left_4(-14, 1);
-	Motor right_4(20);
+	Motor left_1(1,1);
+	Motor right_1(10);
+	Motor left_2(13);
+	Motor right_2(12,1);
+	Motor left_3(9,1);
+	Motor right_3(2);
 
-	Imu inertial(21);
+	Imu inertial(8);
 
 /**
  * A callback function for LLEMU's center button.
@@ -82,11 +80,9 @@ void opcontrol() {
 	pros::screen::print(TEXT_MEDIUM, 1, "Temperature left 1 : %f", left_1.get_temperature());
 	pros::screen::print(TEXT_MEDIUM, 2, "Temperature left 2: %f", left_2.get_temperature());
 	pros::screen::print(TEXT_MEDIUM, 3, "Temperature left 3: %f", left_3.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 4, "Temperature left 4: %f", left_4.get_temperature());
 	pros::screen::print(TEXT_MEDIUM, 5, "Temperature right 1 : %f", right_1.get_temperature());
 	pros::screen::print(TEXT_MEDIUM, 6, "Temperature right 2: %f", right_2.get_temperature());
 	pros::screen::print(TEXT_MEDIUM, 7, "Temperature right 3: %f", right_3.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 8, "Temperature right 4: %f", right_4.get_temperature());
 	
 	
 	

@@ -4,21 +4,17 @@ void BrakeOn(){
 	left_1.set_brake_mode(MOTOR_BRAKE_HOLD);
 	left_2.set_brake_mode(MOTOR_BRAKE_HOLD);
 	left_3.set_brake_mode(MOTOR_BRAKE_HOLD);
-	left_4.set_brake_mode(MOTOR_BRAKE_HOLD);
 	right_1.set_brake_mode(MOTOR_BRAKE_HOLD);
 	right_2.set_brake_mode(MOTOR_BRAKE_HOLD);
 	right_3.set_brake_mode(MOTOR_BRAKE_HOLD);
-	right_4.set_brake_mode(MOTOR_BRAKE_HOLD);
 }
 void BrakeOff(){
 	left_1.set_brake_mode(MOTOR_BRAKE_COAST);
 	left_2.set_brake_mode(MOTOR_BRAKE_COAST);
 	left_3.set_brake_mode(MOTOR_BRAKE_COAST);
-	left_4.set_brake_mode(MOTOR_BRAKE_COAST);
 	right_1.set_brake_mode(MOTOR_BRAKE_COAST);
 	right_2.set_brake_mode(MOTOR_BRAKE_COAST);
 	right_3.set_brake_mode(MOTOR_BRAKE_COAST);
-	right_4.set_brake_mode(MOTOR_BRAKE_COAST);
 }
 
 void Powerdrive(int powerforward, int powerturning){
@@ -29,8 +25,6 @@ void Powerdrive(int powerforward, int powerturning){
 	right_2 = powerforward - powerturning;
 	left_3 = powerforward + powerturning;
 	right_3 = powerforward - powerturning;
- 	left_4 = powerforward + powerturning;
-	right_4 = powerforward - powerturning;
 }
 
 
