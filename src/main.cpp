@@ -1,12 +1,14 @@
 #include "main.h"
-	Motor left_1(1,1);
-	Motor right_1(10);
-	Motor left_2(13);
-	Motor right_2(12,1);
-	Motor left_3(9,1);
-	Motor right_3(2);
+	Motor left_1(11, 1);
+	Motor right_1(17);
+	Motor left_2(12, 1);
+	Motor right_2(18);
+	Motor left_3(13, 1);
+	Motor right_3(19);
+	Motor left_4(14, 1);
+	Motor right_4(20);
 
-	Imu inertial(8);
+	Imu inertial(21);
 
 /**
  * A callback function for LLEMU's center button.
