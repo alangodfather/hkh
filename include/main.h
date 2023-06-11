@@ -88,5 +88,7 @@ extern Motor left_2;
 extern Motor right_2;
 extern Motor left_3;
 extern Motor right_3;
+extern Motor right_4;
+extern Motor left_4;
 
 
