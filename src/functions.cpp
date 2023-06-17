@@ -156,6 +156,7 @@ int SpeedCap(int speed){
 }
 
 void PIDdrive(int inches, double kP, double kI, double kD){
+	resetSens();
 	double target = inches;
 	double difference = target-left_1.get_position();
 	int power;

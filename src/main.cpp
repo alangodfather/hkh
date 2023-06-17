@@ -60,6 +60,7 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
+	
 	PDIdrive(1000,0.225,0.001,0.5);
 	PDIturn(-90,1.8,0,1);
 	inertial.reset();
