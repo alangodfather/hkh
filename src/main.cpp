@@ -60,7 +60,8 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	PIDdrive(40,0.225,0.001,0.5);
+	PIDdrive(25,1,0.001,0.5);
+
 	
 
 

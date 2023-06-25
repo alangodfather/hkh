@@ -68,6 +68,7 @@ void turning(int time, int turnp){
 	}
 	Powerdrive(0,0);
 }
+
 void turn(int target){
     while(fabs(target - inertial.get_rotation()) > 0.5){
         if(target > inertial.get_rotation()){
@@ -122,6 +123,7 @@ double InchtoTicks(double distance){
 // }
 
 void PDIturn (int degrees, double kP, double kI, double kD){
+	resetSens();
 	double difference = degrees-inertial.get_rotation();
 	int power;
 	int integral;
@@ -176,9 +178,9 @@ void PIDdrive(int inches, double kP, double kI, double kD){
 	double r_kP = 3.5;
 	double r_kI = 0;
 	double r_kD = 0;
-	while(fabs(target-left_1.get_position())> 2 || (fabs(degrees-inertial.get_rotation())>0.2)){
-		pros::screen::print(TEXT_MEDIUM, 1, "distance driven: %f", left_1.get_position());
-		pros::screen::print(TEXT_MEDIUM, 2, "rotation: %f", inertial.get_rotation());
+	while(fabs(target-left_1.get_position())>5 || (fabs(degrees-inertial.get_rotation())>0.75)){
+		pros::screen::print(TEXT_MEDIUM, 1, "distance driven: %f", difference);
+		pros::screen::print(TEXT_MEDIUM, 2, "rotation: %f", r_difference);
 		//derivative
 		past_difference = difference; 
 		difference = target-left_1.get_position();
