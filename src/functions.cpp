@@ -4,11 +4,11 @@ void resetSens(){
 left_1.tare_position();
 left_2.tare_position();
 left_3.tare_position();
-left_4.tare_position();
+catapult.tare_position();
 right_1.tare_position();
 right_2.tare_position();
 right_3.tare_position();
-right_4.tare_position();
+intake.tare_position();
 
 inertial.tare_rotation();
 }
@@ -16,22 +16,22 @@ void BrakeOn(){
 	left_1.set_brake_mode(MOTOR_BRAKE_HOLD);
 	left_2.set_brake_mode(MOTOR_BRAKE_HOLD);
 	left_3.set_brake_mode(MOTOR_BRAKE_HOLD);
-	left_4.set_brake_mode(MOTOR_BRAKE_HOLD);
+	catapult.set_brake_mode(MOTOR_BRAKE_HOLD);
 	right_1.set_brake_mode(MOTOR_BRAKE_HOLD);
 	right_2.set_brake_mode(MOTOR_BRAKE_HOLD);
 	right_3.set_brake_mode(MOTOR_BRAKE_HOLD);
-	right_4.set_brake_mode(MOTOR_BRAKE_HOLD);
+	intake.set_brake_mode(MOTOR_BRAKE_HOLD);
 	
 }
 void BrakeOff(){
 	left_1.set_brake_mode(MOTOR_BRAKE_COAST);
 	left_2.set_brake_mode(MOTOR_BRAKE_COAST);
 	left_3.set_brake_mode(MOTOR_BRAKE_COAST);
-	left_4.set_brake_mode(MOTOR_BRAKE_COAST);
+	catapult.set_brake_mode(MOTOR_BRAKE_COAST);
 	right_1.set_brake_mode(MOTOR_BRAKE_COAST);
 	right_2.set_brake_mode(MOTOR_BRAKE_COAST);
 	right_3.set_brake_mode(MOTOR_BRAKE_COAST);
-	right_4.set_brake_mode(MOTOR_BRAKE_COAST);
+	intake.set_brake_mode(MOTOR_BRAKE_COAST);
 }
 
 void Powerdrive(int powerforward, int powerturning){
@@ -42,8 +42,6 @@ void Powerdrive(int powerforward, int powerturning){
 	right_2 = powerforward - powerturning;
 	left_3 = powerforward + powerturning;
 	right_3 = powerforward - powerturning;
-	right_4 = powerforward - powerturning;
-	left_4 = powerforward + powerturning;
 }
 
 
