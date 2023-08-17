@@ -5,9 +5,9 @@
 	Motor right_2(5,1);
 	Motor left_3(21,1);
 	Motor right_3(9);
-	Motor catapult(14, 1);
+	Motor catapult(1);
 	Motor intake(14);
-	Rotation rotationsensor(20);
+	Rotation rotation_sensor(8);
 
 	Imu inertial(6);
 
@@ -26,9 +26,10 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	delay(500);
+	 pros::lcd::initialize();
+	delay(250);
 	inertial.reset();
-	delay(1000);
+	delay(250);
 }
 
 /**
@@ -84,16 +85,7 @@ void autonomous() {
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	Controller master(pros::E_CONTROLLER_MASTER);
-	pros::screen::print(TEXT_MEDIUM, 1, "Temperature left 1 : %f", left_1.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 2, "Temperature left 2: %f", left_2.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 3, "Temperature left 3: %f", left_3.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 5, "Temperature right 1 : %f", right_1.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 6, "Temperature right 2: %f", right_2.get_temperature());
-	pros::screen::print(TEXT_MEDIUM, 7, "Temperature right 3: %f", right_3.get_temperature());
-	
-	
-	
+	rotation_sensor.reset();
 	
 	
 	
@@ -117,6 +109,8 @@ void opcontrol() {
 	delay(500);
 	drive(-6000);
 	*/
+
+
 
 
 
@@ -155,19 +149,45 @@ void opcontrol() {
 
 
 	while (true) {
+		Controller master(pros::E_CONTROLLER_MASTER);
+		pros::screen::print(TEXT_MEDIUM, 1, "Temperature left 1 : %f", left_1.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 2, "Temperature left 2: %f", left_2.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 3, "Temperature left 3: %f", left_3.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 5, "Temperature right 1 : %f", right_1.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 6, "Temperature right 2: %f", right_2.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 7, "Temperature right 3: %f", right_3.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 8, "Rotation Sensor angle %f", rotation_sensor.get_angle());
+    
+		
 		int yaxis = master.get_analog(ANALOG_LEFT_Y);
 		int xaxis = master.get_analog(ANALOG_RIGHT_X);
 
 		Powerdrive(yaxis,xaxis);
+		
+
+	
+		
+		if(rotation_sensor.get_angle() < 4590){
+			catapult = -127;
+		}
+		else if(master.get_digital(DIGITAL_R2) == true){
+			catapult = -127;
+		}
+		//restore after launching
+		else{
+			catapult = 0;
+		}
+
+
 		if(master.get_digital(DIGITAL_R1) == true){
-			intake = -127;
-		}else if(master.get_digital(DIGITAL_L1) == true){
 			intake = 127;
+		}else if(master.get_digital(DIGITAL_L1) == true){
+			intake = -127;
 		}
 		else{
 			intake = 0;
 		}
-
+		
 		
 	}
 }
