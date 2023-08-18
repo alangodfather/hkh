@@ -27,9 +27,9 @@
  */
 void initialize() {
 	 pros::lcd::initialize();
-	delay(250);
-	inertial.reset();
-	delay(250);
+	// delay(250);
+	// inertial.reset();
+	// delay(250);
 }
 
 /**
@@ -150,13 +150,13 @@ void opcontrol() {
 
 	while (true) {
 		Controller master(pros::E_CONTROLLER_MASTER);
-		pros::screen::print(TEXT_MEDIUM, 1, "Temperature left 1 : %f", left_1.get_temperature());
-		pros::screen::print(TEXT_MEDIUM, 2, "Temperature left 2: %f", left_2.get_temperature());
-		pros::screen::print(TEXT_MEDIUM, 3, "Temperature left 3: %f", left_3.get_temperature());
-		pros::screen::print(TEXT_MEDIUM, 5, "Temperature right 1 : %f", right_1.get_temperature());
-		pros::screen::print(TEXT_MEDIUM, 6, "Temperature right 2: %f", right_2.get_temperature());
-		pros::screen::print(TEXT_MEDIUM, 7, "Temperature right 3: %f", right_3.get_temperature());
-		pros::screen::print(TEXT_MEDIUM, 8, "Rotation Sensor angle %f", rotation_sensor.get_angle());
+		// pros::screen::print(TEXT_MEDIUM, 1, "Temperature left 1 : %f", left_1.get_temperature());
+		// pros::screen::print(TEXT_MEDIUM, 2, "Temperature left 2: %f", left_2.get_temperature());
+		// pros::screen::print(TEXT_MEDIUM, 3, "Temperature left 3: %f", left_3.get_temperature());
+		// pros::screen::print(TEXT_MEDIUM, 5, "Temperature right 1 : %f", right_1.get_temperature());
+		// pros::screen::print(TEXT_MEDIUM, 6, "Temperature right 2: %f", right_2.get_temperature());
+		// pros::screen::print(TEXT_MEDIUM, 7, "Temperature right 3: %f", right_3.get_temperature());
+		// pros::screen::print(TEXT_MEDIUM, 8, "Rotation Sensor angle %f", rotation_sensor.get_angle());
     
 		
 		int yaxis = master.get_analog(ANALOG_LEFT_Y);
@@ -173,14 +173,13 @@ void opcontrol() {
 		else if(master.get_digital(DIGITAL_R2) == true){
 			catapult = -127;
 		}
-		//restore after launching
 		else{
 			catapult = 0;
 		}
 
 
 		if(master.get_digital(DIGITAL_R1) == true){
-			intake = 127;
+			intake = 90;
 		}else if(master.get_digital(DIGITAL_L1) == true){
 			intake = -127;
 		}
@@ -188,6 +187,8 @@ void opcontrol() {
 			intake = 0;
 		}
 		
+		delay(20);
 		
 	}
+	
 }
