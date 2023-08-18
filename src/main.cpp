@@ -179,7 +179,7 @@ void opcontrol() {
 
 
 		if(master.get_digital(DIGITAL_R1) == true){
-			intake = 90;
+			intake = 105;
 		}else if(master.get_digital(DIGITAL_L1) == true){
 			intake = -127;
 		}
