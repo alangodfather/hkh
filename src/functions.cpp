@@ -155,6 +155,9 @@ int SpeedCap(int speed){
 	}
 
 }
+void Intake(int power){
+	intake = power;
+}
 
 void PIDdrive(int inches, double kP, double kI, double kD){
 	resetSens();
