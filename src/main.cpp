@@ -7,6 +7,8 @@
 	Motor right_3(9);
 	Motor catapult(1);
 	Motor intake(14);
+	ADIDigitalOut piston(2);
+	ADIDigitalOut wings(1);
 	Rotation rotation_sensor(8);
 
 	Imu inertial(6);
@@ -27,6 +29,8 @@
  */
 void initialize() {
 	 pros::lcd::initialize();
+	 piston.set_value(true);
+	 wings.set_value(true);
 	// delay(250);
 	// inertial.reset();
 	// delay(250);
@@ -64,38 +68,6 @@ void competition_initialize() {}
 void autonomous() {
 	PIDdrive(25,1,0.001,0.5);
 
-	
-
-
-	
-	/*PIDdrive(1000,1,0.025,0.25);*/
-}
-
-/**
- * Runs the operator control code. This function will be started in its own task
- * with the default priority and stack size whenever the robot is enabled via
- * the Field Management System or the VEX Competition Switch in the operator
- * control mode.
- *
- * If no competition control is connected, this function will run immediately
- * following initialize().
- *
- * If the robot is disabled or communications is lost, the
- * operator control task will be stopped. Re-enabling the robot will restart the
- * task, not resume it from where it left off.
- */
-void opcontrol() {
-	rotation_sensor.reset();
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/**
 	drive(1050);
 	turn(80);
@@ -146,6 +118,38 @@ void opcontrol() {
 	delay(500);
 	millisdrive(300,-1);
 	*/
+	
+	/*PIDdrive(1000,1,0.025,0.25);*/
+}
+
+/**
+ * Runs the operator control code. This function will be started in its own task
+ * with the default priority and stack size whenever the robot is enabled via
+ * the Field Management System or the VEX Competition Switch in the operator
+ * control mode.
+ *
+ * If no competition control is connected, this function will run immediately
+ * following initialize().
+ *
+ * If the robot is disabled or communications is lost, the
+ * operator control task will be stopped. Re-enabling the robot will restart the
+ * task, not resume it from where it left off.
+ */
+void opcontrol() {
+	rotation_sensor.reset();
+	bool toggle = false;
+	bool tog = false;
+	bool shoot = false;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 	while (true) {
@@ -167,8 +171,8 @@ void opcontrol() {
 
 	
 		
-		if(rotation_sensor.get_angle() < 4590){
-			catapult = -127;
+		if(rotation_sensor.get_angle() < 4570){
+			catapult = -110;
 		}
 		else if(master.get_digital(DIGITAL_R2) == true){
 			catapult = -127;
@@ -176,7 +180,8 @@ void opcontrol() {
 		else{
 			catapult = 0;
 		}
-
+		
+		
 
 		if(master.get_digital(DIGITAL_R1) == true){
 			intake = 105;
@@ -186,6 +191,18 @@ void opcontrol() {
 		else{
 			intake = 0;
 		}
+		if (master.get_digital_new_press(DIGITAL_UP) == true){
+			toggle = !toggle;
+			piston.set_value(toggle);
+
+		}
+		if (master.get_digital_new_press(DIGITAL_L2) == true){
+			tog = !tog;
+			wings.set_value(tog);
+
+		}
+		
+		
 		
 		delay(20);
 		
