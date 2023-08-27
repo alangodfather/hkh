@@ -29,8 +29,8 @@
  */
 void initialize() {
 	 pros::lcd::initialize();
-	 piston.set_value(true);
-	 wings.set_value(true);
+	
+	 wings.set_value(false);
 	// delay(250);
 	// inertial.reset();
 	// delay(250);
@@ -53,6 +53,7 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {}
+	
 
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -66,7 +67,21 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	PIDdrive(25,1,0.001,0.5);
+	//piston.set_value(true);
+	//delay(300);
+	PIDdrive(21,0.175,0.25,0.1);
+	delay(500);
+	PDIturn(-30,1.6,0.0,0.3);
+	piston.set_value(true);
+	intaking(-127);
+	delay(1000);
+	piston.set_value(false);
+	delay(1000);
+	millisdrive(1000,1);
+	millisdrive(1250,-1);
+
+
+	//PDIturn(1000000,0.1,0,0);
 
 	/**
 	drive(1050);
@@ -172,7 +187,7 @@ void opcontrol() {
 	
 		
 		if(rotation_sensor.get_angle() < 4570){
-			catapult = -110;
+			catapult = -127;
 		}
 		else if(master.get_digital(DIGITAL_R2) == true){
 			catapult = -127;
@@ -191,12 +206,12 @@ void opcontrol() {
 		else{
 			intake = 0;
 		}
-		if (master.get_digital_new_press(DIGITAL_UP) == true){
+		if (master.get_digital_new_press(DIGITAL_L2) == true){
 			toggle = !toggle;
 			piston.set_value(toggle);
 
 		}
-		if (master.get_digital_new_press(DIGITAL_L2) == true){
+		if (master.get_digital_new_press(DIGITAL_UP) == true){
 			tog = !tog;
 			wings.set_value(tog);
 

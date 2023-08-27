@@ -54,7 +54,7 @@ void timedmove(int time){
 void millisdrive(int time, int power){
 	int st = millis();
 	while(time > millis() - st){
-		Powerdrive(60*power,0 );
+		Powerdrive(90*power,0 );
 	}
 	Powerdrive(0,0);
 }
@@ -155,7 +155,7 @@ int SpeedCap(int speed){
 	}
 
 }
-void Intake(int power){
+void intaking(double power){
 	intake = power;
 }
 
