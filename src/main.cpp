@@ -67,8 +67,8 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	//piston.set_value(true);
-	//delay(300);
+
+	// Far side auto
 	PIDdrive(21,0.175,0.25,0.1);
 	delay(500);
 	PDIturn(-30,1.6,0.0,0.3);
