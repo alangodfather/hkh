@@ -68,10 +68,16 @@ void competition_initialize() {}
  */
 void autonomous() {
 
+
+
+
+
+	
 	// Far side auto
-	PIDdrive(21,0.175,0.25,0.1);
-	delay(500);
-	PDIturn(-30,1.6,0.0,0.3);
+	
+	millisdrive(500,1);
+	delay(200);
+	turning(190,-1);
 	piston.set_value(true);
 	intaking(-127);
 	delay(1000);
@@ -80,9 +86,20 @@ void autonomous() {
 	millisdrive(1000,1);
 	millisdrive(1250,-1);
 
-
+//Near side auto
+	/*
+	millisdrive(600,1);
+	delay(200);
+	turning(250,1);
+	piston.set_value(true);
+	intaking(-127);
+	delay(1000);
+	piston.set_value(false);
+	delay(1000);
+	millisdrive(1000,1);
+	millisdrive(1250,-1);
 	//PDIturn(1000000,0.1,0,0);
-
+*/
 	/**
 	drive(1050);
 	turn(80);
