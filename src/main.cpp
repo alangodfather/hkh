@@ -203,7 +203,7 @@ void opcontrol() {
 
 	
 		
-		if(rotation_sensor.get_angle() < 4570){
+		if(rotation_sensor.get_angle() < 4650){
 			catapult = -127;
 		}
 		else if(master.get_digital(DIGITAL_R2) == true){
