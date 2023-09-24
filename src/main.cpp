@@ -28,8 +28,8 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
+	 inertial.reset();
 	 pros::lcd::initialize();
-	
 	 wings.set_value(false);
 	// delay(250);
 	// inertial.reset();
@@ -67,13 +67,57 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
+	//left side
+	PIDdrive(19,0.60,0.5,0);
+	delay(100);
+	PDIturn(40,2.2,0,0);
+	delay(500);
+	PIDdrive(2,0.60,0.5,0);
+	delay(500);
+	intaking(-127);
+	piston.set_value(true);
+	delay(500);
+	piston.set_value(false);
+	delay(500);
+	millisdrive(500,1);
+	delay(500);
+	millisdrive(200,-1);
+	delay(500);
+	millisdrive(250,1);
+	delay(500);
+	millisdrive(250,-1);
 
+
+	
+	
+	
+	
+	/*delay(500);
+	piston.set_value(true);
+	delay(500);
+	intaking(-127);
+	delay(500);
+	piston.set_value(false);
+	delay(5000);
+	millisdrive(1000,1);
+	delay(500);
+	millisdrive(1250,-1);
+    *\
+	/*delay(500);
+	PDIturn(-30,1.6,0.0,0.3);
+	piston.set_value(true);
+	intaking(-127);
+	delay(1000);
+	piston.set_value(false);
+	delay(1000);
+	millisdrive(1000,1);
+	millisdrive(1250,-1);
 
 
 
 
 	
-	// Far side auto
+	/* Far side auto
 	
 	millisdrive(500,1);
 	delay(200);
@@ -85,6 +129,7 @@ void autonomous() {
 	delay(1000);
 	millisdrive(1000,1);
 	millisdrive(1250,-1);
+	*\
 
 //Near side auto
 	/*
@@ -200,7 +245,9 @@ void opcontrol() {
 
 		Powerdrive(yaxis,xaxis);
 		
-
+		if(master.get_digital(DIGITAL_X)== true){
+			void autonomous();
+		}
 	
 		
 		if(rotation_sensor.get_angle() < 4650){

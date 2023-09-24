@@ -125,7 +125,7 @@ void PDIturn (int degrees, double kP, double kI, double kD){
 	int integral;
 	int past_difference;
 	int derivative;
-	while(fabs(degrees-inertial.get_rotation())>0.2){
+	while(fabs(degrees-inertial.get_rotation())>0.5){
 		past_difference = difference; 
 		difference = degrees-inertial.get_rotation();
 		derivative = difference-past_difference;
@@ -142,7 +142,7 @@ void PDIturn (int degrees, double kP, double kI, double kD){
 
 
 int SpeedCap(int speed){ 
-	int limit = 100;
+	int limit = 80;
 	
 	if(abs(speed) <= limit ){
 		return(speed);
