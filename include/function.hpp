@@ -10,7 +10,7 @@ void millisdrive(int time, int power);
 void turning(int time, int turnp);
 void turn(int target);
 void drive(int target);
-void intaking(double power);
+void timedintake(int time, int power);
 double InchtoTicks(double distance);
 // void PDIdrive (int inches, double kP, double kI, double kD);
 void PDIturn (int degrees, double kP, double kI, double kD);

@@ -153,8 +153,12 @@ int SpeedCap(int speed){
 	}
 
 }
-void intaking(double power){
-	intake = power;
+void timedintake(int time, int power){
+	int seconds = millis();
+	while(time > millis() - seconds){
+		intake = power;
+	}
+	intake = 0;
 }
 
 void PIDdrive(int inches, double kP, double kI, double kD){

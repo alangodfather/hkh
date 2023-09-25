@@ -67,7 +67,24 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
+	millisdrive(2000,-1);
+	delay(500);
+	PIDdrive(7,0.75,0.0,0);
+	delay(500);
+	PDIturn(55,2.8,0,0);
+	delay(500);
+	millisdrive(500,-1);
+	delay(500);
+	PIDdrive(20,0.75,0.0,0);
+	delay(500);
+	PDIturn(45,2.5,0,0);
+	// timedintake(1000,-127);
+	// delay(500);
+	// PIDdrive(6,2,0,0.2);
+	
+	
 	//left side
+	/*
 	PIDdrive(19,0.60,0.5,0);
 	delay(100);
 	PDIturn(40,2.2,0,0);
@@ -86,7 +103,7 @@ void autonomous() {
 	millisdrive(250,1);
 	delay(500);
 	millisdrive(250,-1);
-
+	*\
 
 	
 	
@@ -217,21 +234,9 @@ void opcontrol() {
 	bool toggle = false;
 	bool tog = false;
 	bool shoot = false;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
 	while (true) {
 		Controller master(pros::E_CONTROLLER_MASTER);
-		// pros::screen::print(TEXT_MEDIUM, 1, "Temperature left 1 : %f", left_1.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 1, "Angle: %ld \n", rotation_sensor.get_angle());
 		// pros::screen::print(TEXT_MEDIUM, 2, "Temperature left 2: %f", left_2.get_temperature());
 		// pros::screen::print(TEXT_MEDIUM, 3, "Temperature left 3: %f", left_3.get_temperature());
 		// pros::screen::print(TEXT_MEDIUM, 5, "Temperature right 1 : %f", right_1.get_temperature());
@@ -250,14 +255,18 @@ void opcontrol() {
 		}
 	
 		
-		if(rotation_sensor.get_angle() < 4650){
-			catapult = -127;
-		}
-		else if(master.get_digital(DIGITAL_R2) == true){
+
+		if(master.get_digital(DIGITAL_R2)){
 			catapult = -127;
 		}
 		else{
-			catapult = 0;
+			if(rotation_sensor.get_angle() < 4650){
+			catapult = -127;
+			}
+			else{
+				catapult = 0;
+			}
+
 		}
 		
 		
