@@ -67,17 +67,21 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	millisdrive(2000,-1);
+	PDIturn(90,5,0.003,35);
+	delay(1000);
+	PDIturn(90,5,0.003,35);
+	/*millisdrive(1000,-1);
 	delay(500);
-	PIDdrive(7,0.75,0.0,0);
+	PIDdrive(8,0.65,0,0);
 	delay(500);
-	PDIturn(55,2.8,0,0);
+	PDIturn(90,3.5,0,0);
 	delay(500);
-	millisdrive(500,-1);
+	millisdrive(400,-1);
 	delay(500);
-	PIDdrive(20,0.75,0.0,0);
+	PIDdrive(35,0.75,0.0,0);
 	delay(500);
-	PDIturn(45,2.5,0,0);
+	PDIturn(35,2.5,0,0);
+	*/
 	// timedintake(1000,-127);
 	// delay(500);
 	// PIDdrive(6,2,0,0.2);

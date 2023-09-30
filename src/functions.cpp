@@ -9,8 +9,8 @@ right_1.tare_position();
 right_2.tare_position();
 right_3.tare_position();
 intake.tare_position();
-
 inertial.tare_rotation();
+
 }
 void BrakeOn(){
 	left_1.set_brake_mode(MOTOR_BRAKE_HOLD);
@@ -120,29 +120,31 @@ double InchtoTicks(double distance){
 
 void PDIturn (int degrees, double kP, double kI, double kD){
 	resetSens();
+	inertial.tare_rotation();
 	double difference = degrees-inertial.get_rotation();
 	int power;
 	int integral;
 	int past_difference;
 	int derivative;
-	while(fabs(degrees-inertial.get_rotation())>0.5){
+	while(fabs(degrees-inertial.get_rotation())> 0.5){
 		past_difference = difference; 
 		difference = degrees-inertial.get_rotation();
+		
 		derivative = difference-past_difference;
 
-		if(fabs(degrees-inertial.get_rotation())<2.5){
+		if(fabs(degrees-inertial.get_rotation()) < 5){
 			integral += difference;
 		}
 
 		power = difference*kP + integral*kI + derivative*kD;
-		Powerdrive(0,power);
+		Powerdrive(0,SpeedCap(power));
 	}
 	Powerdrive(0,0);
 }
 
 
 int SpeedCap(int speed){ 
-	int limit = 80;
+	int limit = 90;
 	
 	if(abs(speed) <= limit ){
 		return(speed);
