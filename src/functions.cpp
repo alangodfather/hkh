@@ -126,22 +126,29 @@ void PDIturn (int degrees, double kP, double kI, double kD){
 	int integral;
 	int past_difference;
 	int derivative;
-	while(fabs(degrees-inertial.get_rotation())> 0.5){
-		past_difference = difference; 
-		difference = degrees-inertial.get_rotation();
-		
-		derivative = difference-past_difference;
-
-		if(fabs(degrees-inertial.get_rotation()) < 5){
-			integral += difference;
+	int timer = millis();
+	
+	while((millis()-timer) < 500){
+		if(abs(degrees-inertial.get_rotation())>1.25){
+		timer = millis();
 		}
+			past_difference = difference; 
+			difference = degrees-inertial.get_rotation();
+			
 
-		power = difference*kP + integral*kI + derivative*kD;
-		Powerdrive(0,SpeedCap(power));
-	}
-	Powerdrive(0,0);
+			if(fabs(degrees-inertial.get_rotation()) < 20){
+			integral += difference;
+			}
+			derivative = difference-past_difference;
+			power = difference*kP + integral*kI + derivative*kD;
+			Powerdrive(0,SpeedCap(power));
+
+			pros::screen::print(TEXT_MEDIUM, 1, "Error: %lf \n", difference);
+			pros::screen::print(TEXT_MEDIUM, 2, "Angle: %f \n", rotation_sensor.get_angle());
+			pros::screen::print(TEXT_MEDIUM, 3, "exit timer: %d \n", timer);
+		}	
+	Powerdrive(0,0);	
 }
-
 
 int SpeedCap(int speed){ 
 	int limit = 90;

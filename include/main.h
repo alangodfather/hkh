@@ -88,7 +88,7 @@ extern Motor left_2;
 extern Motor right_2;
 extern Motor left_3;
 extern Motor right_3;
-extern Rotation rotationsensor;
+extern Rotation rotation_sensor;
 extern Motor catapult;
 extern Motor intake;
 extern ADIDigitalOut piston;
