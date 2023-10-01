@@ -52,9 +52,9 @@ void timedmove(int time){
 void millisdrive(int time, int power){
 	int st = millis();
 	while(time > millis() - st){
-		Powerdrive(90*power,0 );
+		Powerdrive(70*power,0 );
 	}
-	Powerdrive(0,0);
+	Powerdrive(SpeedCap(0),0);
 }
 
 void turning(int time, int turnp){
@@ -118,28 +118,28 @@ double InchtoTicks(double distance){
 // 	Powerdrive(SpeedCap(power),0);
 // }
 
-void PDIturn (int degrees, double kP, double kI, double kD){
+void PIDturn (int degrees, double kP, double kI, double kD){
 	resetSens();
 	inertial.tare_rotation();
 	double difference = degrees-inertial.get_rotation();
-	int power;
-	int integral;
-	int past_difference;
-	int derivative;
+	double power;
+	double integral;
+	double past_difference;
+	double derivative;
 	int timer = millis();
 	
 	while((millis()-timer) < 500){
-		if(abs(degrees-inertial.get_rotation())>1.25){
+		if(abs(degrees-inertial.get_rotation())>1.5){
 		timer = millis();
 		}
-			past_difference = difference; 
 			difference = degrees-inertial.get_rotation();
 			
 
-			if(fabs(degrees-inertial.get_rotation()) < 20){
+			if(fabs(degrees-inertial.get_rotation()) < 10){
 			integral += difference;
 			}
-			derivative = difference-past_difference;
+			derivative = difference - past_difference;
+			past_difference = difference; 
 			power = difference*kP + integral*kI + derivative*kD;
 			Powerdrive(0,SpeedCap(power));
 
@@ -151,7 +151,7 @@ void PDIturn (int degrees, double kP, double kI, double kD){
 }
 
 int SpeedCap(int speed){ 
-	int limit = 90;
+	int limit = 100;
 	
 	if(abs(speed) <= limit ){
 		return(speed);
@@ -174,10 +174,10 @@ void PIDdrive(int inches, double kP, double kI, double kD){
 	resetSens();
 	double target = InchtoTicks(inches);
 	double difference = target-left_1.get_position();
-	int power;
-	int integral;
-	int past_difference;
-	int derivative;
+	double power;
+	double integral;
+	double past_difference;
+	double derivative;
 	
 	//turning
 	double degrees = 0;

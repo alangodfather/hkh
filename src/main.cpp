@@ -10,7 +10,6 @@
 	ADIDigitalOut piston(2);
 	ADIDigitalOut wings(1);
 	Rotation rotation_sensor(8);
-
 	Imu inertial(6);
 
 /**
@@ -67,33 +66,32 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	PDIturn(90,1,0.0008,0);
+	
+	millisdrive(1150,-1);
 	delay(500);
-	intake=-127;
+	PIDdrive(7,0.255,0.0915,0);
+	delay(500);
+	PIDturn(90,1.1,0.0063,1.35);
+	delay(500);
+	millisdrive(450,-1);
+	delay(500);
+	PIDdrive(40,0.30,0.09,0.3);
+	delay(500);
+	PIDturn(45,1.2,0.0063,1.35);
+	delay(500);
+	piston.set_value(true);
+	delay(500);
+	PIDdrive(10,0.255,0,0);
+	delay(500);
+	timedintake(1500,-127);
 
-
-	/*millisdrive(1000,-1);
-	delay(500);
-	PIDdrive(8,0.65,0,0);
-	delay(500);
-	PDIturn(90,3.5,0,0);
-	delay(500);
-	millisdrive(400,-1);
-	delay(500);
-	PIDdrive(35,0.75,0.0,0);
-	delay(500);
-	PDIturn(35,2.5,0,0);
-	*/
-	// timedintake(1000,-127);
-	// delay(500);
-	// PIDdrive(6,2,0,0.2);
 	
 	
 	//left side
 	/*
 	PIDdrive(19,0.60,0.5,0);
 	delay(100);
-	PDIturn(40,2.2,0,0);
+	PIDturn(40,2.2,0,0);
 	delay(500);
 	PIDdrive(2,0.60,0.5,0);
 	delay(500);
@@ -127,7 +125,7 @@ void autonomous() {
 	millisdrive(1250,-1);
     *\
 	/*delay(500);
-	PDIturn(-30,1.6,0.0,0.3);
+	PIDturn(-30,1.6,0.0,0.3);
 	piston.set_value(true);
 	intaking(-127);
 	delay(1000);
@@ -166,7 +164,7 @@ void autonomous() {
 	delay(1000);
 	millisdrive(1000,1);
 	millisdrive(1250,-1);
-	//PDIturn(1000000,0.1,0,0);
+	//PIDturn(1000000,0.1,0,0);
 */
 	/**
 	drive(1050);
@@ -257,7 +255,7 @@ void opcontrol() {
 		Powerdrive(yaxis,xaxis);
 		
 		if(master.get_digital(DIGITAL_X)== true){
-			void autonomous();
+			autonomous();
 		}
 	
 		

@@ -13,7 +13,7 @@ void drive(int target);
 void timedintake(int time, int power);
 double InchtoTicks(double distance);
 // void PDIdrive (int inches, double kP, double kI, double kD);
-void PDIturn (int degrees, double kP, double kI, double kD);
+void PIDturn (int degrees, double kP, double kI, double kD);
 int SpeedCap(int speed);
 void PIDdrive(int inches, double kP, double kI, double kD);
 void resetSens();
