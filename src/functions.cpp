@@ -52,7 +52,7 @@ void timedmove(int time){
 void millisdrive(int time, int power){
 	int st = millis();
 	while(time > millis() - st){
-		Powerdrive(70*power,0 );
+		Powerdrive(84*power,0 );
 	}
 	Powerdrive(SpeedCap(0),0);
 }
@@ -128,14 +128,14 @@ void PIDturn (int degrees, double kP, double kI, double kD){
 	double derivative;
 	int timer = millis();
 	
-	while((millis()-timer) < 500){
-		if(abs(degrees-inertial.get_rotation())>1.5){
+	while((millis()-timer) < 250){
+		if(abs(degrees-inertial.get_rotation())>2){
 		timer = millis();
 		}
 			difference = degrees-inertial.get_rotation();
 			
 
-			if(fabs(degrees-inertial.get_rotation()) < 10){
+			if(fabs(degrees-inertial.get_rotation()) < 20){
 			integral += difference;
 			}
 			derivative = difference - past_difference;
@@ -169,6 +169,15 @@ void timedintake(int time, int power){
 	}
 	intake = 0;
 }
+
+void timedcata(int time, int power){
+	int seconds = millis();
+	while(time > millis() - seconds){
+		catapult = power;
+	}
+	catapult = 0;
+}
+
 
 void PIDdrive(int inches, double kP, double kI, double kD){
 	resetSens();
@@ -223,4 +232,5 @@ void PIDdrive(int inches, double kP, double kI, double kD){
 
 
 }
+
 

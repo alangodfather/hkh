@@ -66,25 +66,39 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	
-	millisdrive(1150,-1);
-	delay(500);
-	PIDdrive(7,0.255,0.0915,0);
-	delay(500);
-	PIDturn(90,1.1,0.0063,1.35);
-	delay(500);
-	millisdrive(450,-1);
-	delay(500);
-	PIDdrive(40,0.30,0.09,0.3);
-	delay(500);
-	PIDturn(45,1.2,0.0063,1.35);
-	delay(500);
+	millisdrive(970,-1);
+	delay(150);
+	PIDdrive(6,0.26,0.01,0.2);
+	delay(150);
+	PIDturn(90,2,0.0025,0.15);
+	delay(150);
+	millisdrive(330,-1);
+	delay(150);
 	piston.set_value(true);
-	delay(500);
-	PIDdrive(10,0.255,0,0);
-	delay(500);
-	timedintake(1500,-127);
+	delay(200);
+	PIDdrive(38,0.31,0.003,0);
+	delay(150);
+	PIDturn(38,2.1,0.003,0.1);
+	delay(150);
+	intake = 77;
+	PIDdrive(11,0.19,0.003,1.3);
+	delay(200);
+	intake = 0;
+	PIDturn(110,2.1,0.003,0.2);
+	delay(150);
+	PIDdrive(18,0.45,0.008,1);
+	intake = -127;
+	delay(1250);
+	intake = 0;
+	piston.set_value(false);
+	delay(150);
+	millisdrive(450,1);
+	delay(350);
+	millisdrive(225,-1);
+	delay(350);
+	millisdrive(300,1);
 
+	
 	
 	
 	//left side
@@ -276,7 +290,7 @@ void opcontrol() {
 		
 
 		if(master.get_digital(DIGITAL_R1) == true){
-			intake = 105;
+			intake = 110;
 		}else if(master.get_digital(DIGITAL_L1) == true){
 			intake = -127;
 		}
