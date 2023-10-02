@@ -66,6 +66,39 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
+	PIDdrive(-35,0.25,0.003,0.2);
+	delay(1000);
+	PIDdrive(37,0.25,0.0025,0.15);
+	delay(250);
+	PIDturn(60,2.1,0.003,0.1);
+	delay(250);
+	piston.set_value(true);
+	delay(250);
+	PIDdrive(17,0.31,0.003,0);
+	delay(250);
+	PIDturn(15,1.9,0.003,0.1);
+	delay(250);
+	intake = -85;
+	delay(1000);
+	intake = 0;
+	delay(250);
+	piston.set_value(false);
+	delay(250);
+	millisdrive(400,1);
+	delay(500);
+	millisdrive(200,-1);
+	delay(500);
+	millisdrive(500,1);
+
+
+
+
+
+
+	
+
+ 
+	/* offensive side auto
 	millisdrive(970,-1);
 	delay(150);
 	PIDdrive(6,0.26,0.01,0.2);
@@ -97,141 +130,9 @@ void autonomous() {
 	millisdrive(225,-1);
 	delay(350);
 	millisdrive(300,1);
-
-	
-	
-	
-	//left side
-	/*
-	PIDdrive(19,0.60,0.5,0);
-	delay(100);
-	PIDturn(40,2.2,0,0);
-	delay(500);
-	PIDdrive(2,0.60,0.5,0);
-	delay(500);
-	intaking(-127);
-	piston.set_value(true);
-	delay(500);
-	piston.set_value(false);
-	delay(500);
-	millisdrive(500,1);
-	delay(500);
-	millisdrive(200,-1);
-	delay(500);
-	millisdrive(250,1);
-	delay(500);
-	millisdrive(250,-1);
-	*\
-
-	
-	
-	
-	
-	/*delay(500);
-	piston.set_value(true);
-	delay(500);
-	intaking(-127);
-	delay(500);
-	piston.set_value(false);
-	delay(5000);
-	millisdrive(1000,1);
-	delay(500);
-	millisdrive(1250,-1);
-    *\
-	/*delay(500);
-	PIDturn(-30,1.6,0.0,0.3);
-	piston.set_value(true);
-	intaking(-127);
-	delay(1000);
-	piston.set_value(false);
-	delay(1000);
-	millisdrive(1000,1);
-	millisdrive(1250,-1);
-
-
-
-
-	
-	/* Far side auto
-	
-	millisdrive(500,1);
-	delay(200);
-	turning(190,-1);
-	piston.set_value(true);
-	intaking(-127);
-	delay(1000);
-	piston.set_value(false);
-	delay(1000);
-	millisdrive(1000,1);
-	millisdrive(1250,-1);
-	*\
-
-//Near side auto
-	/*
-	millisdrive(600,1);
-	delay(200);
-	turning(250,1);
-	piston.set_value(true);
-	intaking(-127);
-	delay(1000);
-	piston.set_value(false);
-	delay(1000);
-	millisdrive(1000,1);
-	millisdrive(1250,-1);
-	//PIDturn(1000000,0.1,0,0);
-*/
-	/**
-	drive(1050);
-	turn(80);
-	inertial.reset();
-	drive(-550);
-	delay(1000);
-	drive;(550);
-	turn(125);
-	inertial.reset();
-	/*
-	delay(500);
-	drive(-6000);
-	*/
-
-
-
-
-
-
-
-
-
-
-	/*
-	millisdrive(2100,1);
-	delay(1000);
-	turning(240,1);
-	delay(1000);
-	millisdrive(2700,1);
-	delay(1000);
-	turning(260,-1);
-	delay(1000);
-	turning(515,-1);
-	delay(1000);
-	millisdrive(1400,-1);
-	delay(1000);
-	millisdrive(100,1);
-	delay(1000);
-	turning(430,1);
-	delay(500);
-	millisdrive(600,-1);
-	delay(1000);
-	turning(240,1);
-	delay(1000);
-	millisdrive(3500,-1);
-	delay(1000);
-	turning(150,1);
-	delay(500);
-	millisdrive(300,-1);
 	*/
 	
-	/*PIDdrive(1000,1,0.025,0.25);*/
+
 }
 
 /**
