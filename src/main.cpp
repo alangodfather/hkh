@@ -66,6 +66,7 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
+	// defensive side auto
 	PIDdrive(-35,0.25,0.003,0.2);
 	delay(1000);
 	PIDdrive(37,0.25,0.0025,0.15);
