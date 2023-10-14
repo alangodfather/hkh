@@ -52,7 +52,7 @@ void timedmove(int time){
 void millisdrive(int time, int power){
 	int st = millis();
 	while(time > millis() - st){
-		Powerdrive(84*power,0 );
+		Powerdrive(power,0 );
 	}
 	Powerdrive(SpeedCap(0),0);
 }
@@ -177,6 +177,16 @@ void timedcata(int time, int power){
 	}
 	catapult = 0;
 }
+void resetcata(){
+
+	while(rotation_sensor.get_angle() < 4650){
+			catapult = -127;
+	}
+	catapult = 0;
+		
+}
+	
+
 
 
 void PIDdrive(int inches, double kP, double kI, double kD){

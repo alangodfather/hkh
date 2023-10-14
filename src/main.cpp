@@ -66,23 +66,32 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	
-	millisdrive(1250,-1);
-	millisdrive(900,1);
-	delay(500);
-	PIDturn(-26,2,0.0025,0.15);
+
 	timedcata(3000,-127);
 	delay(500);
-	PIDturn(-20,2,0.0025,0.15);
+	resetcata();
+	PIDturn(-23,2,0.0025,0.15);
+	delay(200);
+	PIDdrive(-9,0.26,0.01,0.2);
+	delay(200);
+	PIDturn(-89,2,0.0025,0.15);
 	delay(500);
-	PIDdrive(-15,0.26,0.01,0.2);
-	PIDturn(-90,2,0.0025,0.15);
-	millisdrive(-450,1);
-	PIDdrive(7,0.26,0.01,0.2);
+	millisdrive(500,-60);
+	delay(500);
+	PIDdrive(5,0.26,0.01,0.2);
+	delay(500);
 	PIDturn(90,2,0.0025,0.15);
 	piston.set_value(true);
-	PIDdrive(-30,0.26,0.01,0.2);
 	delay(500);
+	PIDdrive(-64,0.28,0.01,0.2);
+	piston.set_value(false);
+	PIDturn(50,2,0.0025,0.15);
+	PIDdrive(-38,0.26,0.01,0.2);
+	PIDturn(30,2,0.0025,0.15);
+	millisdrive(150,-80);
+	millisdrive(100,80);
+	delay(500);
+	millisdrive(250,-80);
 
 
 
