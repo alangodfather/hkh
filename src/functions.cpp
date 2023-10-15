@@ -42,6 +42,15 @@ void Powerdrive(int powerforward, int powerturning){
 	right_3 = powerforward - powerturning;
 }
 
+void PowerdriveSide(int leftPower, int rightPower){
+
+	left_1 = leftPower;
+	right_1 = rightPower;
+	left_2 = leftPower;
+	right_2 = rightPower;
+	left_3 = leftPower;
+	right_3 = rightPower;
+}
 
 void timedmove(int time){
 	Powerdrive(60,0);
@@ -95,28 +104,7 @@ double InchtoTicks(double distance){
 
 	return  (double(distance/PI/diameter/external*internal)); 
 }
-// void PDIdrive (int inches, double kP, double kI, double kD){
-// 	 double target = InchtoTicks(inches);
-// 	//double target = inches;
-// 	double difference = target-left_1.get_position();
-// 	int power;
-// 	int integral;
-// 	int past_difference;
-// 	int derivative;
-// 	while(fabs(target-left_1.get_position())> 2){
-// 		past_difference = difference; 
-// 		difference = target-left_1.get_position();
-// 		derivative = difference-past_difference;
 
-// 		if(fabs(target-left_1.get_position())<10){
-// 			integral += difference;
-// 		}
-
-// 		power = difference*kP + integral*kI + derivative*kD;
-// 		Powerdrive(power,0);
-// 	}
-// 	Powerdrive(SpeedCap(power),0);
-// }
 
 void PIDturn (int degrees, double kP, double kI, double kD){
 	resetSens();
@@ -162,6 +150,17 @@ int SpeedCap(int speed){
 	}
 
 }
+int SpeedCapLimit(int speed, int limit){ 
+	
+	if(abs(speed) <= limit ){
+		return(speed);
+	}else if(speed < -limit){
+	    return -limit;
+	}else {
+		return limit;
+	}
+
+}
 void timedintake(int time, int power){
 	int seconds = millis();
 	while(time > millis() - seconds){
@@ -189,7 +188,7 @@ void resetcata(){
 
 
 
-void PIDdrive(int inches, double kP, double kI, double kD){
+void PIDdrive(int inches, double kP, double kI, double kD, int time){
 	resetSens();
 	double target = InchtoTicks(inches);
 	double difference = target-left_1.get_position();
@@ -197,7 +196,7 @@ void PIDdrive(int inches, double kP, double kI, double kD){
 	double integral;
 	double past_difference;
 	double derivative;
-	
+	int st = millis();
 	//turning
 	double degrees = 0;
 
@@ -209,7 +208,7 @@ void PIDdrive(int inches, double kP, double kI, double kD){
 	double r_kP = 3.5;
 	double r_kI = 0;
 	double r_kD = 0;
-	while(fabs(target-left_1.get_position())>5 || (fabs(degrees-inertial.get_rotation())>0.75)){
+	while((fabs(target-left_1.get_position())>5 || (fabs(degrees-inertial.get_rotation())>0.75)) && time > millis() - st){
 		pros::screen::print(TEXT_MEDIUM, 1, "distance driven: %f", difference);
 		pros::screen::print(TEXT_MEDIUM, 2, "rotation: %f", r_difference);
 		//derivative
@@ -244,3 +243,110 @@ void PIDdrive(int inches, double kP, double kI, double kD){
 }
 
 
+void PIDdriverightArc(int inches, double kP, double kI, double kD, int time){
+	resetSens();
+	double target = InchtoTicks(inches);
+	double difference = target-left_1.get_position();
+	double power;
+	double integral;
+	double past_difference;
+	double derivative;
+	int st = millis();
+	//turning
+	double degrees = 40;
+
+	int r_power;
+	int r_integral;
+	int r_past_difference;
+	int r_derivative;
+	double r_difference;
+	double r_kP = 3.5;
+	double r_kI = 0;
+	double r_kD = 0;
+	while((fabs(target-left_1.get_position())>5 || (fabs(degrees-inertial.get_rotation())>0.75)) && time > millis() - st){
+		pros::screen::print(TEXT_MEDIUM, 1, "distance driven: %f", difference);
+		pros::screen::print(TEXT_MEDIUM, 2, "rotation: %f", r_difference);
+		//derivative
+		past_difference = difference; 
+		difference = target-left_1.get_position();
+		derivative = difference-past_difference;
+
+		if(fabs(target-left_1.get_position())<10){
+			integral += difference;
+		}
+
+		power = difference*kP + integral*kI + derivative*kD;
+		//turning
+		// r_past_difference = r_difference;
+		r_difference = degrees-inertial.get_rotation();
+		// r_derivative = r_difference-r_past_difference; 
+
+		// if(fabs(degrees-inertial.get_rotation())<2.5){
+		// 	r_integral += r_difference;
+		// }
+
+		r_power = r_difference*r_kP;
+		
+
+		PowerdriveSide(SpeedCapLimit(power*2,60),SpeedCapLimit(power*2+r_power, 95));
+	}
+	
+	
+	Powerdrive(0,0);
+
+
+}
+
+void PIDdriveleftArc(int inches, double kP, double kI, double kD, int time){
+	resetSens();
+	double target = InchtoTicks(inches);
+	double difference = target-left_1.get_position();
+	double power;
+	double integral;
+	double past_difference;
+	double derivative;
+	int st = millis();
+	//turning
+	double degrees = -40;
+
+	int r_power;
+	int r_integral;
+	int r_past_difference;
+	int r_derivative;
+	double r_difference;
+	double r_kP = 3.5;
+	double r_kI = 0;
+	double r_kD = 0;
+	while((fabs(target-left_1.get_position())>5 || (fabs(degrees-inertial.get_rotation())>0.75)) && time > millis() - st){
+		pros::screen::print(TEXT_MEDIUM, 1, "distance driven: %f", difference);
+		pros::screen::print(TEXT_MEDIUM, 2, "rotation: %f", r_difference);
+		//derivative
+		past_difference = difference; 
+		difference = target-left_1.get_position();
+		derivative = difference-past_difference;
+
+		if(fabs(target-left_1.get_position())<10){
+			integral += difference;
+		}
+
+		power = difference*kP + integral*kI + derivative*kD;
+		//turning
+		// r_past_difference = r_difference;
+		r_difference = degrees-inertial.get_rotation();
+		// r_derivative = r_difference-r_past_difference; 
+
+		// if(fabs(degrees-inertial.get_rotation())<2.5){
+		// 	r_integral += r_difference;
+		// }
+
+		r_power = r_difference*r_kP;
+		
+
+		PowerdriveSide(SpeedCapLimit(power*2+r_power, 95),SpeedCapLimit(power*2,60));
+	}
+	
+	
+	Powerdrive(0,0);
+
+
+}
