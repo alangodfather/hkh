@@ -123,7 +123,7 @@ void PIDturn (int degrees, double kP, double kI, double kD){
 			difference = degrees-inertial.get_rotation();
 			
 
-			if(fabs(degrees-inertial.get_rotation()) < 20){
+			if(fabs(degrees-inertial.get_rotation()) < 5){
 			integral += difference;
 			}
 			derivative = difference - past_difference;
@@ -307,7 +307,7 @@ void PIDdriveleftArc(int inches, double kP, double kI, double kD, int time){
 	double derivative;
 	int st = millis();
 	//turning
-	double degrees = -40;
+	double degrees = -60;
 
 	int r_power;
 	int r_integral;
