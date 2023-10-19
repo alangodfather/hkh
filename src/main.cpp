@@ -66,9 +66,25 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	// Working Skills auto code (Slot 3)
+	PIDdrive(-10,0.5,0.01,0.2,1000);
+	delay(200);
+	PIDdriverightArc(-40,0.4,0.01,0.2,1000);
+	delay(500);
+	PIDdrive(5,0.5,0.01,0.2,1000);
+	PIDturn(-31,2.6,0.0025,2);
+	PIDdrive(13,0.5,0.01,0.2,1000);
+	PIDturn(180,2.5,0.0025,2);
+	wings.set_value(true);
+	delay(750);
+	PIDdriveleftArc(-10,0.35,0.01,0.2,1500);
+	wings.set_value(false);
+	wings.set_value(true);
+	wings.set_value(false);
+	PIDdrive(-35,0.5,0.01,0.2,1000);	
 
-	piston.set_value(true);
+
+	// Working Skills auto code (Slot 3)
+	/*piston.set_value(true);
 	timedcata(40000,-127);
 	PIDturn(-30,2,0.0025,2);
 	resetcata();
@@ -94,7 +110,7 @@ void autonomous() {
 	PIDdrive(-11,1,0.01,0.2,800);
 	delay(500);
 	PIDdrive(18,1,0.01,0.2,800);
-
+	*/
 	
 	
 
