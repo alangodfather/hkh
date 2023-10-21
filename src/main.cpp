@@ -67,7 +67,37 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
+	piston.set_value(true);
+	timedcata(40000,-127);
+	PIDturn(-30,2,0.0025,2);
+	resetcata();
+	PIDdrive(-79,0.3,0.01,0.2,5000);
+	PIDdriverightArc(-40,0.5,0.01,0.2,2200);
+	PIDdrive(9,0.5,0.01,0.2,900);
+	PIDdrive(-11,0.5,0.01,0.2,1000);
+	PIDdrive(9,0.5,0.01,0.2,900);
+	PIDdrive(-11,0.5,0.01,0.2,1000);
+	PIDdrive(5,0.28,0.01,0.2,1000);
+	PIDturn(-90,2.2,0.0025,2);
+	PIDdrive(-8,0.28,0.01,0.2,1000);
+	intake = -127;
+	PIDdrive(43,0.28,0.01,0.2,2000);
+	PIDturn(90,2.2,0.0025,2);
+	intake = 0;
+	wings.set_value(true);
+	PIDdrive(-8,0.28,0.01,0.2,2000);
+	delay(250);
+	PIDdriveleftArc(-55,0.35,0.01,0.2,1500);
+	PIDdrive(10,1,0.01,0.2,2000);
+	delay(750);
+	PIDdrive(-11,1,0.01,0.2,2000);
+	delay(500);
+	PIDdrive(15,1,0.01,0.2,3000);
+	wings.set_value(false);
 	
+
+	// wp auto
+	/*
 	wings.set_value(true);
 	delay(500);
 	PIDturn(-52,3.1,0.0025,1);
@@ -90,38 +120,6 @@ void autonomous() {
 	delay(500);
 	PIDdrive(-31,0.25,0.01,5,4000);
 	delay(250);
-
-	//PIDdrive(7,0.5,0.001,0.3,1050);
-	
-	
-
-
-
-;	/*PIDdrive(-7,0.5,0.001,0.3,1050);
-	PIDturn(45,1.6,0.0015,1);
-	PIDdrive(-5,0.5,0.001,0.3,1050);
-	PIDturn(45,1.6,0.0015,1);
-	PIDdrive(-13,0.5,0.001,0.3,1050);*/
-
-	
-
-	//backup wp auto
-	/*
-	PIDdrive(-10,0.5,0.01,0.2,1000);	
-	delay(200);
-	PIDdriverightArc(-40,0.4,0.01,0.2,1000);
-	delay(500);
-	PIDdrive(5,0.5,0.01,0.2,1000);
-	PIDturn(-31,2.6,0.0025,2);
-	PIDdrive(13,0.5,0.01,0.2,1000);
-	PIDturn(180,2.5,0.0025,2);
-	wings.set_value(true);
-	delay(750);
-	PIDdriveleftArc(-10,0.35,0.01,0.2,1500);
-	wings.set_value(false);
-	wings.set_value(true);
-	wings.set_value(false);
-	PIDdrive(-35,0.5,0.01,0.2,1000);	
 	*/
 
 	// Working Skills auto code (Slot 3)
@@ -176,7 +174,6 @@ void autonomous() {
 	PIDturn(90,2,0.0025,0.15);
 	piston.set_value(true);
 	delay(500);
-
 	millisdrive(970,-1);
 	delay(150);
 	PIDdrive(6,0.26,0.01,0.2);
@@ -241,38 +238,39 @@ void autonomous() {
 
 	// offensive side auto
 	
-	// millisdrive(970,-1);
-	// delay(150);
-	// PIDdrive(6,0.26,0.01,0.2);
-	// delay(150);
-	// PIDturn(90,2,0.0025,0.15);
-	// delay(150);
-	// millisdrive(330,-1);
-	// delay(150);
-	// piston.set_value(true);
-	// delay(200);
-	// PIDdrive(38,0.31,0.003,0);
-	// delay(150);
-	// PIDturn(38,2.1,0.003,0.1);
-	// delay(150);
-	// intake = 85;
-	// PIDdrive(11,0.19,0.003,1.3);
-	// delay(200);
-	// intake = 0;
-	// PIDturn(110,2.1,0.003,0.2);
-	// delay(150);
-	// PIDdrive(18,0.45,0.008,1);
-	// intake = -115;
-	// delay(1250);
-	// intake = 0;
-	// piston.set_value(false);
-	// delay(150);
-	// millisdrive(450,1);
-	// delay(350);
-	// millisdrive(225,-1);
-	// delay(350);
-	// millisdrive(300,1);
-	
+	/*
+	millisdrive(970,-1);
+	delay(150);
+	PIDdrive(6,0.26,0.01,0.2,2000);
+	delay(150);
+	PIDturn(90,2,0.0025,0.15);
+	delay(150);
+	millisdrive(330,-1);
+	delay(150);
+	piston.set_value(true);
+	delay(200);
+	PIDdrive(38,0.31,0.003,0, 2000);
+	delay(150);
+	PIDturn(38,2.1,0.003,0.1);
+	delay(150);
+	intake = 85;
+	PIDdrive(11,0.19,0.003,1.3, 2000);
+	delay(200);
+	intake = 0;
+	PIDturn(110,2.1,0.003,0.2);
+	delay(150);
+	PIDdrive(18,0.45,0.008,1, 2000);
+	intake = -115;
+	delay(1250);
+	intake = 0;
+	piston.set_value(false);
+	delay(150);
+	millisdrive(450,1);
+	delay(350);
+	millisdrive(225,-1);
+	delay(350);
+	millisdrive(300,1);
+	*/
 
 }
 

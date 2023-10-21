@@ -61,7 +61,7 @@ void timedmove(int time){
 void millisdrive(int time, int power){
 	int st = millis();
 	while(time > millis() - st){
-		Powerdrive(power,0 );
+		Powerdrive(84*power,0 );
 	}
 	Powerdrive(SpeedCap(0),0);
 }
@@ -69,7 +69,7 @@ void millisdrive(int time, int power){
 void turning(int time, int turnp){
 	int st = millis();
 	while(time > millis() - st){
-		Powerdrive(0,1*turnp);
+		Powerdrive(0,60*turnp);
 	}
 	Powerdrive(0,0);
 }
@@ -119,7 +119,7 @@ void PIDturn (int degrees, double kP, double kI, double kD){
 	
 	while(((millis()-timer) < 250)){
 		i++;
-		if(abs(degrees-inertial.get_rotation())>3){
+		if(abs(degrees-inertial.get_rotation())>3.5){
 			timer = millis();
 		}
 			difference = degrees-inertial.get_rotation();
