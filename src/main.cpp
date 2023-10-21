@@ -28,7 +28,7 @@
  */
 void initialize() {
 	 inertial.reset();
-	 delay(2000);
+	 delay(200);
 	 pros::lcd::initialize();
 	 wings.set_value(false);
 	// delay(250);
@@ -68,27 +68,27 @@ void competition_initialize() {}
  */
 void autonomous() {
 	
-	
 	wings.set_value(true);
 	delay(500);
-	PIDturn(-52,3.0,0.0025,1);
-	delay(250);
+	PIDturn(-52,3.1,0.0025,1);
+	delay(500);
 	wings.set_value(false);
-	delay(300);
-	PIDturn(30,2.6,0.0025,1);
+	PIDturn(15,3.0,0.0025,2);
 	delay(200);
-	PIDdrive(18,0.6,0.0025,1,1000);
+	PIDdrive(18,0.35,0.0025,1,2000);
+	PIDturn(35,3.5,0.0025,1);
+	delay(250);
+	timedintake(950,-127);
 	delay(500);
-	timedintake(1100,-127);
-	PIDdrive(9,1.0,0.0025,1,1000);
+	PIDdrive(6,1.0,0.0025,1,1000);
+	delay(500);
 	PIDdrive(-6,1.0,0.0025,1,1000);
-	PIDdrive(8,1.0,0.0025,1,1000);
 	delay(500);
-	PIDdriveleftArc(-66,0.33,0.0025,1,1500);
+	PIDdrive(6,1.0,0.0025,1,1000);
 	delay(500);
-	piston.set_value(true);
+	PIDdriveleftArc(-63,0.33,0.0025,1,900);
 	delay(500);
-	PIDdrive(-15,0.5,0.01,0.2,1000);
+	PIDdrive(-31,0.25,0.01,5,4000);
 	delay(250);
 
 	//PIDdrive(7,0.5,0.001,0.3,1050);

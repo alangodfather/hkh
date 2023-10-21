@@ -69,7 +69,7 @@ void millisdrive(int time, int power){
 void turning(int time, int turnp){
 	int st = millis();
 	while(time > millis() - st){
-		Powerdrive(0,60*turnp);
+		Powerdrive(0,1*turnp);
 	}
 	Powerdrive(0,0);
 }
@@ -77,9 +77,9 @@ void turning(int time, int turnp){
 void turn(int target){
     while(fabs(target - inertial.get_rotation()) > 0.5){
         if(target > inertial.get_rotation()){
-            Powerdrive(0,30);
+            Powerdrive(0,-45);
         }else if(target < inertial.get_rotation()){
-            Powerdrive(0,-30);
+            Powerdrive(0,45);
 
         }
     }Powerdrive(0,0);
@@ -106,6 +106,7 @@ double InchtoTicks(double distance){
 }
 
 
+
 void PIDturn (int degrees, double kP, double kI, double kD){
 	resetSens();
 	double difference = degrees-inertial.get_rotation();
@@ -116,10 +117,10 @@ void PIDturn (int degrees, double kP, double kI, double kD){
 	int timer = millis();
 	int i = 4;
 	
-	while((millis()-timer) < 250){
+	while(((millis()-timer) < 250)){
 		i++;
-		if(abs(degrees-inertial.get_rotation())>2){
-		timer = millis();
+		if(abs(degrees-inertial.get_rotation())>3){
+			timer = millis();
 		}
 			difference = degrees-inertial.get_rotation();
 			if(fabs(degrees-inertial.get_rotation()) < 5){
@@ -132,11 +133,12 @@ void PIDturn (int degrees, double kP, double kI, double kD){
 
 			pros::screen::print(TEXT_MEDIUM, 1, "Error: %lf \n", difference);
 			pros::screen::print(TEXT_MEDIUM, 2, "Angle: %f \n", rotation_sensor.get_angle());
-			pros::screen::print(TEXT_MEDIUM, 3, "exit timer: %d \n", timer);
-			pros::delay(10);
+			pros::screen::print(TEXT_MEDIUM, 3, "exit timer: %d \n");
+			pros::delay(20);
 		}	
 	Powerdrive(0,0);	
 }
+
 
 int SpeedCap(int speed){ 
 	int limit = 100;
