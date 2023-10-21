@@ -108,21 +108,20 @@ double InchtoTicks(double distance){
 
 void PIDturn (int degrees, double kP, double kI, double kD){
 	resetSens();
-	inertial.tare_rotation();
 	double difference = degrees-inertial.get_rotation();
 	double power;
 	double integral;
 	double past_difference;
 	double derivative;
 	int timer = millis();
+	int i = 4;
 	
 	while((millis()-timer) < 250){
+		i++;
 		if(abs(degrees-inertial.get_rotation())>2){
 		timer = millis();
 		}
 			difference = degrees-inertial.get_rotation();
-			
-
 			if(fabs(degrees-inertial.get_rotation()) < 5){
 			integral += difference;
 			}
@@ -134,6 +133,7 @@ void PIDturn (int degrees, double kP, double kI, double kD){
 			pros::screen::print(TEXT_MEDIUM, 1, "Error: %lf \n", difference);
 			pros::screen::print(TEXT_MEDIUM, 2, "Angle: %f \n", rotation_sensor.get_angle());
 			pros::screen::print(TEXT_MEDIUM, 3, "exit timer: %d \n", timer);
+			pros::delay(10);
 		}	
 	Powerdrive(0,0);	
 }
@@ -350,3 +350,4 @@ void PIDdriveleftArc(int inches, double kP, double kI, double kD, int time){
 
 
 }
+

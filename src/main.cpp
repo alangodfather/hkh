@@ -10,7 +10,7 @@
 	ADIDigitalOut piston(2);
 	ADIDigitalOut wings(1);
 	Rotation rotation_sensor(8);
-	Imu inertial(6);
+	Imu inertial(7);
 
 /**
  * A callback function for LLEMU's center button.
@@ -28,6 +28,7 @@
  */
 void initialize() {
 	 inertial.reset();
+	 delay(2000);
 	 pros::lcd::initialize();
 	 wings.set_value(false);
 	// delay(250);
@@ -66,7 +67,47 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	PIDdrive(-10,0.5,0.01,0.2,1000);
+	
+	
+	wings.set_value(true);
+	delay(500);
+	PIDturn(-52,3.0,0.0025,1);
+	delay(250);
+	wings.set_value(false);
+	delay(300);
+	PIDturn(30,2.6,0.0025,1);
+	delay(200);
+	PIDdrive(18,0.6,0.0025,1,1000);
+	delay(500);
+	timedintake(1100,-127);
+	PIDdrive(9,1.0,0.0025,1,1000);
+	PIDdrive(-6,1.0,0.0025,1,1000);
+	PIDdrive(8,1.0,0.0025,1,1000);
+	delay(500);
+	PIDdriveleftArc(-66,0.33,0.0025,1,1500);
+	delay(500);
+	piston.set_value(true);
+	delay(500);
+	PIDdrive(-15,0.5,0.01,0.2,1000);
+	delay(250);
+
+	//PIDdrive(7,0.5,0.001,0.3,1050);
+	
+	
+
+
+
+;	/*PIDdrive(-7,0.5,0.001,0.3,1050);
+	PIDturn(45,1.6,0.0015,1);
+	PIDdrive(-5,0.5,0.001,0.3,1050);
+	PIDturn(45,1.6,0.0015,1);
+	PIDdrive(-13,0.5,0.001,0.3,1050);*/
+
+	
+
+	//backup wp auto
+	/*
+	PIDdrive(-10,0.5,0.01,0.2,1000);	
 	delay(200);
 	PIDdriverightArc(-40,0.4,0.01,0.2,1000);
 	delay(500);
@@ -81,7 +122,7 @@ void autonomous() {
 	wings.set_value(true);
 	wings.set_value(false);
 	PIDdrive(-35,0.5,0.01,0.2,1000);	
-
+	*/
 
 	// Working Skills auto code (Slot 3)
 	/*piston.set_value(true);
