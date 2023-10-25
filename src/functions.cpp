@@ -119,7 +119,7 @@ void PIDturn (int degrees, double kP, double kI, double kD){
 	
 	while(((millis()-timer) < 250)){
 		i++;
-		if(abs(degrees-inertial.get_rotation())>3.5){
+		if(abs(degrees-inertial.get_rotation())>4){
 			timer = millis();
 		}
 			difference = degrees-inertial.get_rotation();
