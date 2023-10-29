@@ -67,29 +67,25 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	wings.set_value(true);
+	intake = -127;
+	PIDdrive(48,0.25,0.01,5,3000);
+	PIDdrive(-47,0.25,0.01,5,3000);
+	intake = 0;
+	PIDturn(75,3.1,0.0025,1);
 	delay(500);
-	PIDturn(-52,3.1,0.0025,1);
+	PIDdriverightArc(-40,0.5,0.01,0.2,2200);
 	delay(500);
-	wings.set_value(false);
-	PIDturn(15,3.0,0.0025,2);
-	delay(200);
-	PIDdrive(18,0.35,0.0025,1,2000);
-	PIDturn(35,3.5,0.0025,1);
-	delay(250);
-	timedintake(950,-127);
+	PIDdrive(5,0.35,0.01,5,2000);
 	delay(500);
-	PIDdrive(6,1.0,0.0025,1,1000);
+	PIDturn(-180,3.1,0.0025,1);
 	delay(500);
-	PIDdrive(-5,1.0,0.0025,1,8000);
-	delay(500);
-	PIDdrive(6,1.0,0.0025,1,1000);
-	delay(500);
-	PIDdriveleftArc(-63,0.33,0.0025,1,900);
-	delay(500);
-	PIDdrive(-31,0.25,0.01,5,4000);
-	delay(250);
-	
+	PIDdriveleftArc(-67,0.33,0.0025,1,900);
+
+
+
+
+
+
 
 	// wp auto
 	/*
@@ -100,25 +96,25 @@ void autonomous() {
 	wings.set_value(false);
 	PIDturn(15,3.0,0.0025,2);
 	delay(200);
-	PIDdrive(18,0.35,0.0025,1,2000);
+	PIDdrive(19,0.35,0.0025,1,2000);
 	PIDturn(35,3.5,0.0025,1);
 	delay(250);
-	timedintake(950,-127);
+	PIDdrive(2,2.5,0.0025,1,500);
+	delay(250);
+	timedintake(700,90);
 	delay(500);
-	PIDdrive(6,1.0,0.0025,1,1000);
+	PIDdrive(7,2.5,0.0025,1,500);
 	delay(500);
-	PIDdrive(-6,1.0,0.0025,1,1000);
+	PIDdriveleftArc(-67,0.33,0.0025,1,900);
 	delay(500);
-	PIDdrive(6,1.0,0.0025,1,1000);
+	PIDturn(180,3.5,0.0025,1);
 	delay(500);
-	PIDdriveleftArc(-63,0.33,0.0025,1,900);
-	delay(500);
-	PIDdrive(-31,0.25,0.01,5,4000);
+	PIDdrive(27,0.25,0.01,5,4000);
 	delay(250);
 	*/
 
 	// Working Skills auto code (Slot 3)
-	/*piston.set_value(true);
+	/*
 	timedcata(40000,-127);
 	PIDturn(-30,2,0.0025,2);
 	resetcata();
@@ -167,7 +163,6 @@ void autonomous() {
 	PIDdrive(5,0.26,0.01,0.2);
 	delay(500);
 	PIDturn(90,2,0.0025,0.15);
-	piston.set_value(true);
 	delay(500);
 	millisdrive(970,-1);
 	delay(150);
@@ -176,8 +171,6 @@ void autonomous() {
 	PIDturn(90,2,0.0025,0.15);
 	delay(150);
 	millisdrive(330,-1);
-	delay(150);
-	piston.set_value(true);
 	delay(200);
 	PIDdrive(38,0.31,0.003,0);
 	delay(150);
@@ -193,7 +186,6 @@ void autonomous() {
 	intake = -115;
 	delay(1250);
 	intake = 0;
-	piston.set_value(false);
 	delay(150);
 	millisdrive(450,1);
 	delay(350);
@@ -286,16 +278,17 @@ void opcontrol() {
 	rotation_sensor.reset();
 	bool toggle = false;
 	bool tog = false;
+	bool hang = false;
 	bool shoot = false;
 	while (true) {
 		Controller master(pros::E_CONTROLLER_MASTER);
 		pros::screen::print(TEXT_MEDIUM, 1, "Angle: %ld \n", rotation_sensor.get_angle());
-		// pros::screen::print(TEXT_MEDIUM, 2, "Temperature left 2: %f", left_2.get_temperature());
-		// pros::screen::print(TEXT_MEDIUM, 3, "Temperature left 3: %f", left_3.get_temperature());
-		// pros::screen::print(TEXT_MEDIUM, 5, "Temperature right 1 : %f", right_1.get_temperature());
-		// pros::screen::print(TEXT_MEDIUM, 6, "Temperature right 2: %f", right_2.get_temperature());
-		// pros::screen::print(TEXT_MEDIUM, 7, "Temperature right 3: %f", right_3.get_temperature());
-		// pros::screen::print(TEXT_MEDIUM, 8, "Rotation Sensor angle %f", rotation_sensor.get_angle());
+		pros::screen::print(TEXT_MEDIUM, 2, "Temperature left 2: %f", left_2.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 3, "Temperature left 3: %f", left_3.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 5, "Temperature right 1 : %f", right_1.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 6, "Temperature right 2: %f", right_2.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 7, "Temperature right 3: %f", right_3.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 8, "Rotation Sensor angle %f", rotation_sensor.get_angle());
     
 		
 		int yaxis = master.get_analog(ANALOG_LEFT_Y);
@@ -313,7 +306,7 @@ void opcontrol() {
 			catapult = -127;
 		}
 		else{
-			if(rotation_sensor.get_angle() < 4650){
+			if(hang == false && (rotation_sensor.get_angle() < 4640||rotation_sensor.get_angle() > 35800)){
 			catapult = -127;
 			}
 			else{
@@ -321,23 +314,21 @@ void opcontrol() {
 			}
 
 		}
-		
+		if(master.get_digital_new_press(DIGITAL_UP)){
+			hang = !hang;
+		}
 		
 
-		if(master.get_digital(DIGITAL_R1) == true){
-			intake = 105;
-		}else if(master.get_digital(DIGITAL_L1) == true){
+		if(master.get_digital(DIGITAL_L1) == true){
+			intake = 90;
+		}
+		else if(master.get_digital(DIGITAL_R1) == true){
 			intake = -127;
 		}
 		else{
 			intake = 0;
 		}
 		if (master.get_digital_new_press(DIGITAL_L2) == true){
-			toggle = !toggle;
-			piston.set_value(toggle);
-
-		}
-		if (master.get_digital_new_press(DIGITAL_UP) == true){
 			tog = !tog;
 			wings.set_value(tog);
 
