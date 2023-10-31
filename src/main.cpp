@@ -67,6 +67,13 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
+	
+
+
+
+	
+	// elim auto
+	/*
 	intake = -127;
 	PIDdrive(48,0.25,0.01,5,3000);
 	PIDdrive(-47,0.25,0.01,5,3000);
@@ -80,11 +87,7 @@ void autonomous() {
 	PIDturn(-180,3.1,0.0025,1);
 	delay(500);
 	PIDdriveleftArc(-67,0.33,0.0025,1,900);
-
-
-
-
-
+	*/
 
 
 	// wp auto
@@ -115,10 +118,10 @@ void autonomous() {
 
 	// Working Skills auto code (Slot 3)
 	/*
-	timedcata(40000,-127);
-	PIDturn(-30,2,0.0025,2);
+	timedcata(4000,-127);
+	PIDturn(-27,2,0.0025,2);
 	resetcata();
-	PIDdrive(-79,0.3,0.01,0.2,5000);
+	PIDdrive(-79,0.25,0.01,0.2,5000);
 	PIDdriverightArc(-40,0.5,0.01,0.2,2200);
 	PIDdrive(9,0.5,0.01,0.2,900);
 	PIDdrive(-11,0.5,0.01,0.2,1000);
@@ -127,19 +130,21 @@ void autonomous() {
 	PIDdrive(5,0.28,0.01,0.2,1000);
 	PIDturn(-90,2.2,0.0025,2);
 	PIDdrive(-8,0.28,0.01,0.2,1000);
-	intake = -127;
+	intake = 127;
 	PIDdrive(43,0.28,0.01,0.2,2000);
 	PIDturn(90,2.2,0.0025,2);
 	intake = 0;
 	wings.set_value(true);
-	PIDdrive(-4,0.28,0.01,0.2,500);
+	PIDdrive(-6,0.28,0.01,0.2,500);
 	delay(250);
 	PIDdriveleftArc(-55,0.35,0.01,0.2,1500);
-	PIDdrive(10,1,0.01,0.2,800);
-	delay(750);
-	PIDdrive(-11,1,0.01,0.2,800);
-	delay(500);
-	PIDdrive(18,1,0.01,0.2,800);
+	PIDdrive(250,1,0.01,0.2,800);
+	delay(250);
+	PIDturn(90,2.2,0.0025,2);
+	PIDdrive(-5,1,0.01,0.2,800);
+	PIDdriveleftArc(-55,0.35,0.01,0.2,1500);
+	PIDdrive(250,1,0.01,0.2,800);
+	wings.set_value(false);
 	*/
 	
 	
