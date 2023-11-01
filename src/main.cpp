@@ -68,9 +68,44 @@ void competition_initialize() {}
  */
 void autonomous() {
 	
+	
+	//elim close side auto
+	PIDdrive(-39,0.25,0.01,2.5,1100);
+	PIDturn(90,2.9,0.0025,1);
+	wings.set_value(true);
+	PIDdrive(-30,0.25,0.01,5,1100);
+	wings.set_value(false);
+	delay(500);
+	PIDdrive(25,0.15,0.01,5,1100);
+	intake = 127;
+	PIDdrive(11,0.35,0.01,5,1050);
+	intake = 0;
+	delay(500);
+	PIDdrive(-10,0.15,0.01,5,1100);
+	PIDturn(-90,3.8,0.0025,1);
+	PIDdrive(25,0.15,0.01,5,1100);
+	PIDturn(65,3.8,0.0025,1);
+	PIDdrive(25,0.15,0.01,5,1100);
 
-
-
+	//New AWP auto 
+	/*
+	PIDdrive(4,0.35,0.01,5,500);
+	wings.set_value(true);
+	PIDdrive(-5,0.35,0.01,5,500);
+	PIDdrive(13,0.35,0.01,5,500);
+	wings.set_value(false);
+	delay(500);
+	PIDdrive(5,0.35,0.01,5,500);
+	PIDturn(40,3.8,0.0025,1);
+	PIDdrive(5,0.35,0.01,5,500);
+	intake = 127;
+	delay(500);
+	PIDdrive(9,0.35,0.01,5,750);
+	intake = 0;
+	PIDdriveleftArc(-73,0.33,0.0025,1,1100);
+	delay(600);
+	PIDdrive(-14,0.20,0.01,5,500);
+	*/
 	
 	// elim auto
 	/*
