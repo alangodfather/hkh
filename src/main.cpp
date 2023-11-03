@@ -68,8 +68,62 @@ void competition_initialize() {}
  */
 void autonomous() {
 	
+	//new close side legal elim auto
 	
+	intake = -127;
+	PIDdrive(48,0.25,0.01,5,1350);
+	PIDdrive(-47,0.25,0.01,5,1350);
+	PIDturn(75,1.9,0.00025,5);
+	intake = 0;
+	PIDdriverightArc(-40,0.5,0.01,0.2,2200);
+	PIDdrive(5,0.35,0.01,5,2000);
+	PIDturn(-180,2.2,0.000275,7.5);
+	PIDdriveleftArc(-67,0.33,0.0025,1,900);
+	delay(250);
+	PIDturn(-180,2.2,0.000275,7.5);
+	PIDdrive(24,0.35,0.01,5,800);
+	intake = 127;
+	delay(300);
+	PIDdrive(-40,0.35,0.01,5,800);
+	PIDturn(-180,2.2,0.000275,7.5);
+	intake = 0;
+
+	
+	
+	// far side auto elim and normal
+	/*
+	intake = -127;   // first triball push
+	PIDdrive(68,0.25,0.01,5,1350);
+	PIDturn(-52,1.9,0.00025,5);
+	PIDdrive(-50,0.25,0.01,2.5,800);
+	PIDdrive(8,0.25,0.01,2.5,800);
+	intake = 0; 
+	PIDturn(-179,2.2,0.000275,7.5);
+	intake = 100;
+	delay(200);
+	PIDdrive(11,0.25,0.01,2.5,800);
+	intake = 0;
+	PIDdrive(-20,0.20,0.01,2.5,800);
+	PIDturn(130,2.2,0.000275,7.5);
+	intake = -127;
+	delay(250);
+	PIDdrive(33,0.10,0.01,2.5,900);
+	PIDdrive(-15,0.25,0.01,2.5,800);
+	intake = 0;
+	PIDturn(-125,1.9,0.0003,5);
+	intake = 80;
+	PIDdrive(27,0.25,0.01,2.5,800);
+	PIDdrive(-9,0.20,0.01,2.5,800);
+	intake = 0;
+	PIDturn(-90,1.9,0.00025,5);
+	PIDdrive(-36,0.25,0.01,2.5,800);
+	PIDturn(-90,1.9,0.00025,5);
+	PIDdriveleftArc(-73,0.33,0.0025,1,1100);// last triball push
+	PIDdrive(5,0.25,0.01,2.5,800);
+	*/
+
 	//elim close side auto
+	/*
 	PIDdrive(-39,0.25,0.01,2.5,1100);
 	PIDturn(90,2.9,0.0025,1);
 	wings.set_value(true);
@@ -86,6 +140,7 @@ void autonomous() {
 	PIDdrive(25,0.15,0.01,5,1100);
 	PIDturn(65,3.8,0.0025,1);
 	PIDdrive(25,0.15,0.01,5,1100);
+	*/
 
 	//New AWP auto 
 	/*
