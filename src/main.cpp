@@ -67,9 +67,6 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	
-	//new close side legal elim auto
-	
 	intake = -127;
 	PIDdrive(48,0.25,0.01,5,1350);
 	PIDdrive(-47,0.25,0.01,5,1350);
@@ -87,8 +84,30 @@ void autonomous() {
 	PIDdrive(-40,0.35,0.01,5,800);
 	PIDturn(-180,2.2,0.000275,7.5);
 	intake = 0;
-
 	
+	
+	
+	
+	//new close side legal elim auto
+	/*
+	intake = -127;
+	PIDdrive(48,0.25,0.01,5,1350);
+	PIDdrive(-47,0.25,0.01,5,1350);
+	PIDturn(75,1.9,0.00025,5);
+	intake = 0;
+	PIDdriverightArc(-40,0.5,0.01,0.2,2200);
+	PIDdrive(5,0.35,0.01,5,2000);
+	PIDturn(-180,2.2,0.000275,7.5);
+	PIDdriveleftArc(-67,0.33,0.0025,1,900);
+	delay(250);
+	PIDturn(-180,2.2,0.000275,7.5);
+	PIDdrive(24,0.35,0.01,5,800);
+	intake = 127;
+	delay(300);
+	PIDdrive(-40,0.35,0.01,5,800);
+	PIDturn(-180,2.2,0.000275,7.5);
+	intake = 0;
+	*/
 	
 	// far side auto elim and normal
 	/*
@@ -401,7 +420,7 @@ void opcontrol() {
 			catapult = -127;
 		}
 		else{
-			if(hang == false && (rotation_sensor.get_angle() < 4640||rotation_sensor.get_angle() > 35800)){
+			if(hang == false && (rotation_sensor.get_angle() < 4640||rotation_sensor.get_angle() > 35850)){
 			catapult = -127;
 			}
 			else{
