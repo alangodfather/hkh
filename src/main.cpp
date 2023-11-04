@@ -67,23 +67,22 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	intake = -127;
-	PIDdrive(48,0.25,0.01,5,1350);
-	PIDdrive(-47,0.25,0.01,5,1350);
-	PIDturn(75,1.9,0.00025,5);
-	intake = 0;
-	PIDdriverightArc(-40,0.5,0.01,0.2,2200);
-	PIDdrive(5,0.35,0.01,5,2000);
-	PIDturn(-180,2.2,0.000275,7.5);
-	PIDdriveleftArc(-67,0.33,0.0025,1,900);
-	delay(250);
-	PIDturn(-180,2.2,0.000275,7.5);
-	PIDdrive(24,0.35,0.01,5,800);
+	PIDdrive(4,0.35,0.01,5,500);
+	wings.set_value(true);
+	PIDdrive(-5,0.35,0.01,5,500);
+	PIDdrive(13,0.35,0.01,5,500);
+	wings.set_value(false);
+	delay(500);
+	PIDdrive(5,0.35,0.01,5,500);
+	PIDturn(40,3.8,0.0025,1);
+	PIDdrive(5,0.35,0.01,5,500);
 	intake = 127;
-	delay(300);
-	PIDdrive(-40,0.35,0.01,5,800);
-	PIDturn(-180,2.2,0.000275,7.5);
+	delay(500);
+	PIDdrive(9,0.35,0.01,5,750);
 	intake = 0;
+	PIDdriveleftArc(-73,0.33,0.0025,1,1100);
+	delay(600);
+	PIDdrive(-15,0.20,0.01,5,500);
 	
 	
 	
@@ -178,7 +177,7 @@ void autonomous() {
 	intake = 0;
 	PIDdriveleftArc(-73,0.33,0.0025,1,1100);
 	delay(600);
-	PIDdrive(-14,0.20,0.01,5,500);
+	PIDdrive(-15,0.20,0.01,5,500);
 	*/
 	
 	// elim auto
