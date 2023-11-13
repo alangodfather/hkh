@@ -1,55 +1,55 @@
 #include "main.h"
 #include "math.h"
 void resetSens(){
-left_1.tare_position();
-left_2.tare_position();
-left_3.tare_position();
+left_front.tare_position();
+left_top.tare_position();
+left_bottom.tare_position();
 catapult.tare_position();
-right_1.tare_position();
-right_2.tare_position();
-right_3.tare_position();
+right_front.tare_position();
+right_top.tare_position();
+right_bottom.tare_position();
 intake.tare_position();
 inertial.tare_rotation();
 
 }
 void BrakeOn(){
-	left_1.set_brake_mode(MOTOR_BRAKE_HOLD);
-	left_2.set_brake_mode(MOTOR_BRAKE_HOLD);
-	left_3.set_brake_mode(MOTOR_BRAKE_HOLD);
-	right_1.set_brake_mode(MOTOR_BRAKE_HOLD);
-	right_2.set_brake_mode(MOTOR_BRAKE_HOLD);
-	right_3.set_brake_mode(MOTOR_BRAKE_HOLD);
+	left_front.set_brake_mode(MOTOR_BRAKE_HOLD);
+	left_top.set_brake_mode(MOTOR_BRAKE_HOLD);
+	left_bottom.set_brake_mode(MOTOR_BRAKE_HOLD);
+	right_front.set_brake_mode(MOTOR_BRAKE_HOLD);
+	right_top.set_brake_mode(MOTOR_BRAKE_HOLD);
+	right_bottom.set_brake_mode(MOTOR_BRAKE_HOLD);
 	
 	
 }
 void BrakeOff(){
-	left_1.set_brake_mode(MOTOR_BRAKE_COAST);
-	left_2.set_brake_mode(MOTOR_BRAKE_COAST);
-	left_3.set_brake_mode(MOTOR_BRAKE_COAST);
-	right_1.set_brake_mode(MOTOR_BRAKE_COAST);
-	right_2.set_brake_mode(MOTOR_BRAKE_COAST);
-	right_3.set_brake_mode(MOTOR_BRAKE_COAST);
+	left_front.set_brake_mode(MOTOR_BRAKE_COAST);
+	left_top.set_brake_mode(MOTOR_BRAKE_COAST);
+	left_bottom.set_brake_mode(MOTOR_BRAKE_COAST);
+	right_front.set_brake_mode(MOTOR_BRAKE_COAST);
+	right_top.set_brake_mode(MOTOR_BRAKE_COAST);
+	right_bottom.set_brake_mode(MOTOR_BRAKE_COAST);
 
 }
 
 void Powerdrive(int powerforward, int powerturning){
 
-	left_1 = powerforward + powerturning;
-	right_1 = powerforward - powerturning;
-	left_2 = powerforward + powerturning;
-	right_2 = powerforward - powerturning;
-	left_3 = powerforward + powerturning;
-	right_3 = powerforward - powerturning;
+	left_front = powerforward + powerturning;
+	right_front = powerforward - powerturning;
+	left_top = powerforward + powerturning;
+	right_top = powerforward - powerturning;
+	left_bottom = powerforward + powerturning;
+	right_bottom = powerforward - powerturning;
 }
 
 void PowerdriveSide(int leftPower, int rightPower){
 
-	left_1 = leftPower;
-	right_1 = rightPower;
-	left_2 = leftPower;
-	right_2 = rightPower;
-	left_3 = leftPower;
-	right_3 = rightPower;
+	left_front = leftPower;
+	right_front = rightPower;
+	left_top = leftPower;
+	right_top = rightPower;
+	left_bottom = leftPower;
+	right_bottom = rightPower;
 }
 
 void timedmove(int time){
@@ -85,11 +85,11 @@ void turn(int target){
     }Powerdrive(0,0);
 }
 void drive(int target){
-	left_1.tare_position();
-    while(abs(target - left_1.get_position()) > 2 ){
-        if(target > left_1.get_position()){
+	left_front.tare_position();
+    while(abs(target - left_front.get_position()) > 2 ){
+        if(target > left_front.get_position()){
             Powerdrive(30,0);
-        }else if(target < left_1.get_position()){
+        }else if(target < left_front.get_position()){
             Powerdrive(-30,0);
 
         }
@@ -193,7 +193,7 @@ void resetcata(){
 void PIDdrive(int inches, double kP, double kI, double kD, int time){
 	resetSens();
 	double target = InchtoTicks(inches);
-	double difference = target-left_1.get_position();
+	double difference = target-left_front.get_position();
 	double power;
 	double integral;
 	double past_difference;
@@ -210,15 +210,15 @@ void PIDdrive(int inches, double kP, double kI, double kD, int time){
 	double r_kP = 3.5;
 	double r_kI = 0;
 	double r_kD = 0;
-	while((fabs(target-left_1.get_position())>5 || (fabs(degrees-inertial.get_rotation())>0.75)) && time > millis() - st){
+	while((fabs(target-left_front.get_position())>5 || (fabs(degrees-inertial.get_rotation())>0.75)) && time > millis() - st){
 		pros::screen::print(TEXT_MEDIUM, 1, "distance driven: %f", difference);
 		pros::screen::print(TEXT_MEDIUM, 2, "rotation: %f", r_difference);
 		//derivative
 		past_difference = difference; 
-		difference = target-left_1.get_position();
+		difference = target-left_front.get_position();
 		derivative = difference-past_difference;
 
-		if(fabs(target-left_1.get_position())<10){
+		if(fabs(target-left_front.get_position())<10){
 			integral += difference;
 		}
 
@@ -248,7 +248,7 @@ void PIDdrive(int inches, double kP, double kI, double kD, int time){
 void PIDdriverightArc(int inches, double kP, double kI, double kD, int time){
 	resetSens();
 	double target = InchtoTicks(inches);
-	double difference = target-left_1.get_position();
+	double difference = target-left_front.get_position();
 	double power;
 	double integral;
 	double past_difference;
@@ -265,15 +265,15 @@ void PIDdriverightArc(int inches, double kP, double kI, double kD, int time){
 	double r_kP = 3.5;
 	double r_kI = 0;
 	double r_kD = 0;
-	while((fabs(target-left_1.get_position())>5 || (fabs(degrees-inertial.get_rotation())>0.75)) && time > millis() - st){
+	while((fabs(target-left_front.get_position())>5 || (fabs(degrees-inertial.get_rotation())>0.75)) && time > millis() - st){
 		pros::screen::print(TEXT_MEDIUM, 1, "distance driven: %f", difference);
 		pros::screen::print(TEXT_MEDIUM, 2, "rotation: %f", r_difference);
 		//derivative
 		past_difference = difference; 
-		difference = target-left_1.get_position();
+		difference = target-left_front.get_position();
 		derivative = difference-past_difference;
 
-		if(fabs(target-left_1.get_position())<10){
+		if(fabs(target-left_front.get_position())<10){
 			integral += difference;
 		}
 
@@ -302,7 +302,7 @@ void PIDdriverightArc(int inches, double kP, double kI, double kD, int time){
 void PIDdriveleftArc(int inches, double kP, double kI, double kD, int time){
 	resetSens();
 	double target = InchtoTicks(inches);
-	double difference = target-left_1.get_position();
+	double difference = target-left_front.get_position();
 	double power;
 	double integral;
 	double past_difference;
@@ -319,15 +319,15 @@ void PIDdriveleftArc(int inches, double kP, double kI, double kD, int time){
 	double r_kP = 3.5;
 	double r_kI = 0;
 	double r_kD = 0;
-	while((fabs(target-left_1.get_position())>5 || (fabs(degrees-inertial.get_rotation())>0.75)) && time > millis() - st){
+	while((fabs(target-left_front.get_position())>5 || (fabs(degrees-inertial.get_rotation())>0.75)) && time > millis() - st){
 		pros::screen::print(TEXT_MEDIUM, 1, "distance driven: %f", difference);
 		pros::screen::print(TEXT_MEDIUM, 2, "rotation: %f", r_difference);
 		//derivative
 		past_difference = difference; 
-		difference = target-left_1.get_position();
+		difference = target-left_front.get_position();
 		derivative = difference-past_difference;
 
-		if(fabs(target-left_1.get_position())<10){
+		if(fabs(target-left_front.get_position())<10){
 			integral += difference;
 		}
 

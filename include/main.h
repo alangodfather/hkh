@@ -82,12 +82,12 @@ void opcontrol(void);
 
 extern Imu inertial;
 
-extern Motor left_1;
-extern Motor right_1;
-extern Motor left_2;
-extern Motor right_2;
-extern Motor left_3;
-extern Motor right_3;
+extern Motor left_front;
+extern Motor right_front;
+extern Motor left_top;
+extern Motor right_top;
+extern Motor left_bottom;
+extern Motor right_bottom;
 extern Rotation rotation_sensor;
 extern Motor catapult;
 extern Motor intake;

@@ -1,16 +1,16 @@
 #include "main.h"
-	Motor left_1(2, 1);
-	Motor right_1(4);
-	Motor left_2(3);
-	Motor right_2(5,1);
-	Motor left_3(21,1);
-	Motor right_3(9);
-	Motor catapult(1);
-	Motor intake(14);
+	Motor left_front(8, 1);
+	Motor right_front(3);
+	Motor left_top(5);
+	Motor right_top(1,1);
+	Motor left_bottom(9,1);
+	Motor right_bottom(2);
+	Motor catapult(7);
+	Motor intake(12);
 	ADIDigitalOut piston(2);
 	ADIDigitalOut wings(1);
-	Rotation rotation_sensor(8);
-	Imu inertial(7);
+	Rotation rotation_sensor(4);
+	Imu inertial(21);
 
 /**
  * A callback function for LLEMU's center button.
@@ -397,11 +397,11 @@ void opcontrol() {
 	while (true) {
 		Controller master(pros::E_CONTROLLER_MASTER);
 		pros::screen::print(TEXT_MEDIUM, 1, "Angle: %ld \n", rotation_sensor.get_angle());
-		pros::screen::print(TEXT_MEDIUM, 2, "Temperature left 2: %f", left_2.get_temperature());
-		pros::screen::print(TEXT_MEDIUM, 3, "Temperature left 3: %f", left_3.get_temperature());
-		pros::screen::print(TEXT_MEDIUM, 5, "Temperature right 1 : %f", right_1.get_temperature());
-		pros::screen::print(TEXT_MEDIUM, 6, "Temperature right 2: %f", right_2.get_temperature());
-		pros::screen::print(TEXT_MEDIUM, 7, "Temperature right 3: %f", right_3.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 2, "Temperature left 2: %f", left_top.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 3, "Temperature left 3: %f", left_bottom.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 5, "Temperature right 1 : %f", right_front.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 6, "Temperature right 2: %f", right_top.get_temperature());
+		pros::screen::print(TEXT_MEDIUM, 7, "Temperature right 3: %f", right_bottom.get_temperature());
 		pros::screen::print(TEXT_MEDIUM, 8, "Rotation Sensor angle %f", rotation_sensor.get_angle());
     
 		
@@ -420,7 +420,7 @@ void opcontrol() {
 			catapult = -127;
 		}
 		else{
-			if(hang == false && (rotation_sensor.get_angle() < 4640||rotation_sensor.get_angle() > 35850)){
+			if((rotation_sensor.get_angle() < 12200)){
 			catapult = -127;
 			}
 			else{
