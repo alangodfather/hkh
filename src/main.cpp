@@ -5,11 +5,12 @@
 	Motor right_top(1,1);
 	Motor left_bottom(9,1);
 	Motor right_bottom(2);
-	Motor catapult(7);
+	Motor catapult(6);
 	Motor intake(12);
-	ADIDigitalOut piston(2);
 	ADIDigitalOut wings(1);
+	ADIDigitalOut hangpiston(2);
 	Rotation rotation_sensor(4);
+
 	Imu inertial(21);
 
 /**
@@ -67,46 +68,55 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
+	intake = -127;   // first triball push
+	PIDdrive(68,0.25,0.01,5,1350);
+	PIDturn(-52,1.9,0.00025,5);
+	PIDdrive(-50,0.25,0.01,2.5,800);
+	PIDdrive(8,0.25,0.01,2.5,800);
+	intake = 0; 
+	PIDturn(-179,2.2,0.000275,7.5);
+	intake = 100;
+	delay(200);
+	PIDdrive(11,0.25,0.01,2.5,800);
+	intake = 0;
+	PIDdrive(-20,0.20,0.01,2.5,800);
+	PIDturn(129,2.2,0.000275,7.5);
 	intake = -127;
-	PIDdrive(48,0.25,0.01,5,1350);
-	PIDdrive(-47,0.25,0.01,5,1350);
-	PIDturn(75,1.9,0.00025,5);
-	intake = 0;
-	PIDdriverightArc(-40,0.5,0.01,0.2,2200);
-	PIDdrive(5,0.35,0.01,5,2000);
-	PIDturn(-180,2.2,0.000275,7.5);
-	PIDdriveleftArc(-67,0.33,0.0025,1,900);
 	delay(250);
-	PIDturn(-180,2.2,0.000275,7.5);
-	PIDdrive(24,0.35,0.01,5,800);
-	intake = 127;
-	delay(300);
-	PIDdrive(-40,0.35,0.01,5,800);
-	PIDturn(-180,2.2,0.000275,7.5);
+	PIDdrive(33,0.10,0.01,2.5,900);
+	PIDdrive(-13,0.25,0.01,2.5,800);
+	PIDturn(-125,1.9,0.0003,5);
+	intake = 70;
+	PIDdrive(25,0.25,0.01,2.5,800);
+	PIDdrive(-10,0.20,0.01,2.5,800);
 	intake = 0;
-	
-	
-	
+	PIDturn(-90,1.9,0.00025,5);
+	PIDdrive(-37,0.25,0.01,2.5,800);
+	PIDturn(-90,1.9,0.00025,5);
+	PIDdriveleftArc(-77,0.33,0.0025,1,1100);// last triball push
+	PIDdrive(5,0.25,0.01,2.5,800);
+
 	
 	//new close side legal elim auto
 	/*
 	intake = -127;
-	PIDdrive(48,0.25,0.01,5,1350);
+	PIDdrive(47,0.22,0.01,5,1350);
 	PIDdrive(-47,0.25,0.01,5,1350);
 	PIDturn(75,1.9,0.00025,5);
+	PIDdriverightArc(-40,0.4,0.01,0.2,2200);
 	intake = 0;
-	PIDdriverightArc(-40,0.5,0.01,0.2,2200);
 	PIDdrive(5,0.35,0.01,5,2000);
 	PIDturn(-180,2.2,0.000275,7.5);
-	PIDdriveleftArc(-67,0.33,0.0025,1,900);
+	PIDdriveleftArc(-67,0.30,0.0025,1,900);
 	delay(250);
-	PIDturn(-180,2.2,0.000275,7.5);
-	PIDdrive(24,0.35,0.01,5,800);
+	PIDturn(-180,1.8,0.000275,7.5);
+	PIDdrive(24,0.22,0.01,5,800);
 	intake = 127;
 	delay(300);
-	PIDdrive(-40,0.35,0.01,5,800);
-	PIDturn(-180,2.2,0.000275,7.5);
+	PIDdrive(-38,0.22,0.01,5,800);
+	PIDturn(-180,1.82,0.000275,7.5);
 	intake = 0;
+	
 	*/
 	
 	// far side auto elim and normal
@@ -123,21 +133,20 @@ void autonomous() {
 	PIDdrive(11,0.25,0.01,2.5,800);
 	intake = 0;
 	PIDdrive(-20,0.20,0.01,2.5,800);
-	PIDturn(130,2.2,0.000275,7.5);
+	PIDturn(129,2.2,0.000275,7.5);
 	intake = -127;
 	delay(250);
 	PIDdrive(33,0.10,0.01,2.5,900);
-	PIDdrive(-15,0.25,0.01,2.5,800);
-	intake = 0;
+	PIDdrive(-13,0.25,0.01,2.5,800);
 	PIDturn(-125,1.9,0.0003,5);
-	intake = 80;
-	PIDdrive(27,0.25,0.01,2.5,800);
-	PIDdrive(-9,0.20,0.01,2.5,800);
+	intake = 70;
+	PIDdrive(25,0.25,0.01,2.5,800);
+	PIDdrive(-10,0.20,0.01,2.5,800);
 	intake = 0;
 	PIDturn(-90,1.9,0.00025,5);
-	PIDdrive(-36,0.25,0.01,2.5,800);
+	PIDdrive(-37,0.25,0.01,2.5,800);
 	PIDturn(-90,1.9,0.00025,5);
-	PIDdriveleftArc(-73,0.33,0.0025,1,1100);// last triball push
+	PIDdriveleftArc(-77,0.33,0.0025,1,1100);// last triball push
 	PIDdrive(5,0.25,0.01,2.5,800);
 	*/
 
@@ -165,20 +174,23 @@ void autonomous() {
 	/*
 	PIDdrive(4,0.35,0.01,5,500);
 	wings.set_value(true);
-	PIDdrive(-5,0.35,0.01,5,500);
-	PIDdrive(13,0.35,0.01,5,500);
+	PIDdrive(-4,0.35,0.01,5,500);
+	PIDdrive(10,0.35,0.01,5,500);
+	delay(400);
 	wings.set_value(false);
 	delay(500);
-	PIDdrive(5,0.35,0.01,5,500);
-	PIDturn(40,3.8,0.0025,1);
-	PIDdrive(5,0.35,0.01,5,500);
+	PIDdrive(7,0.35,0.01,5,500);
+	PIDturn(36,3.8,0.0025,1);
+	PIDdrive(4,0.35,0.01,5,500);
 	intake = 127;
 	delay(500);
-	PIDdrive(9,0.35,0.01,5,750);
+	PIDdrive(12,0.30,0.01,5,750);
 	intake = 0;
 	PIDdriveleftArc(-73,0.33,0.0025,1,1100);
-	delay(600);
-	PIDdrive(-15,0.20,0.01,5,500);
+	delay(300);
+	PIDturn(180,3.1,0.0025,3);
+	PIDdrive(16,0.20,0.01,5,500);
+	delay(300);
 	*/
 	
 	// elim auto
@@ -420,16 +432,17 @@ void opcontrol() {
 			catapult = -127;
 		}
 		else{
-			if((rotation_sensor.get_angle() < 12200)){
-			catapult = -127;
+			if((rotation_sensor.get_angle() < 12150)){
+			catapult = -100;
 			}
 			else{
 				catapult = 0;
 			}
 
 		}
-		if(master.get_digital_new_press(DIGITAL_UP)){
+		if(master.get_digital_new_press(DIGITAL_A)){
 			hang = !hang;
+			hangpiston.set_value(hang);
 		}
 		
 

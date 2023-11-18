@@ -10,7 +10,6 @@ right_top.tare_position();
 right_bottom.tare_position();
 intake.tare_position();
 inertial.tare_rotation();
-
 }
 void BrakeOn(){
 	left_front.set_brake_mode(MOTOR_BRAKE_HOLD);
@@ -119,11 +118,11 @@ void PIDturn (int degrees, double kP, double kI, double kD){
 	
 	while(((millis()-timer) < 250)){
 		i++;
-		if(abs(degrees-inertial.get_rotation())>4){
+		if(abs(degrees-inertial.get_rotation())>2.75){
 			timer = millis();
 		}
 			difference = degrees-inertial.get_rotation();
-			if(fabs(degrees-inertial.get_rotation()) < 5){
+			if(fabs(degrees-inertial.get_rotation()) < 3){
 			integral += difference;
 			}
 			derivative = difference - past_difference;

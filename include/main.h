@@ -91,7 +91,7 @@ extern Motor right_bottom;
 extern Rotation rotation_sensor;
 extern Motor catapult;
 extern Motor intake;
-extern ADIDigitalOut piston;
+extern ADIDigitalOut hangpiston;
 extern ADIDigitalOut wings;
 
 
