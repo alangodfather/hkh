@@ -68,18 +68,33 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	intake = -127;
-	PIDdrive(46,0.22,0.01,5,1350);
-	delay(500);
-	PIDdrive(-47,0.25,0.01,5,1350);
-	PIDturn(75,1.9,0.00025,5);
-	PIDdriverightArc(-45,0.4,0.01,0.2,2200);
+	intake = -127;   // first triball push
+	PIDdrive(68,0.25,0.01,5,1350);
+	PIDturn(-52,1.9,0.000275,5.5);
+	PIDdrive(-50,0.25,0.01,2.5,800);
+	PIDdrive(9,0.25,0.01,2.5,800);
+	intake = 0; 
+	PIDturn(-179,2.2,0.0002825,8.0);
+	intake = 100;
+	delay(200);
+	PIDdrive(11,0.25,0.01,2.5,800);
 	intake = 0;
-	PIDdrive(4,0.25,0.01,5,1350);
-	delay(300);
-	PIDdrive(-6,0.25,0.01,5,1350);
-	delay(300);
-	PIDdrive(4,0.25,0.01,5,1350);
+	PIDdrive(-20,0.20,0.01,2.5,800);
+	PIDturn(131,2.2,0.000280,8.0);
+	intake = -127;
+	delay(250);
+	PIDdrive(31,0.10,0.01,2.5,900);
+	PIDdrive(-13,0.25,0.01,2.5,800);
+	PIDturn(-133,2.2,0.0003,8);
+	intake = 90;
+	PIDdrive(25,0.25,0.01,2.5,800);
+	PIDdrive(-9,0.20,0.01,2.5,800);
+	intake = 0;
+	PIDturn(-90,1.9,0.00025,5);
+	PIDdrive(-37,0.25,0.01,2.5,800);
+	PIDturn(-90,1.9,0.00025,5);
+	PIDdriveleftArc(-77,0.33,0.0025,1,1100);// last triball push
+	PIDdrive(5,0.25,0.01,2.5,800);
 	
 	
 	
