@@ -140,7 +140,7 @@ void PIDturn (int degrees, double kP, double kI, double kD){
 
 
 int SpeedCap(int speed){ 
-	int limit = 100;
+	int limit = 127;
 	
 	if(abs(speed) <= limit ){
 		return(speed);
