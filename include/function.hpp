@@ -12,7 +12,7 @@ void turn(int target);
 void drive(int target);
 void timedintake(int time, int power);
 double InchtoTicks(double distance);
-void PIDturn (int degrees, double kP, double kI, double kD);
+void PIDturn (int degrees, double kP, double kI, double kD, int timer);
 int SpeedCap(int speed);
 int SpeedCapLimit(int speed, int limit);
 void PIDdrive(int inches, double kP, double kI, double kD, int time);
@@ -21,4 +21,5 @@ void PIDdriveleftArc(int inches, double kP, double kI, double kD, int time);
 void resetSens();
 void timedcata(int time, int power);
 void resetcata();
+
 #endif
