@@ -73,12 +73,12 @@ void autonomous() {
 	PIDdrive(65,0.25,0.01,5,1350);
 	PIDturn(-52,1.9,0.00025,5,1000);
 	PIDdrive(-50,0.25,0.01,2.5,800);
-	PIDdrive(9,0.25,0.01,2.5,800);
+	PIDdrive(10,0.25,0.01,2.5,800);
 	intake = 0; 
 	PIDturn(-165,2.2,0.000275,7.5,1000);
 	intake = 100;
 	delay(200);
-	PIDdrive(11,0.25,0.01,2.5,800);
+	PIDdrive(12,0.25,0.01,2.5,800);
 	intake = 0;
 	PIDdrive(-20,0.20,0.01,2.5,800);
 	PIDturn(123,2.2,0.000275,7.5,1000);
@@ -94,10 +94,12 @@ void autonomous() {
 	PIDturn(-90,1.9,0.00025,5,1000);
 	PIDdrive(-46,0.25,0.01,2.5,800);
 	PIDturn(40,1.9,0.00025,5,1000);
-	PIDdrive(-46,0.25,0.01,2.5,800);
-	wings.set_value(true);
+	PIDdrive(46,0.25,0.01,2.5,800);
 	intake = -127;
-
+	PIDdrive(12,0.25,0.01,4,1000);
+	wings.set_value(true);
+	PIDturn(-55,1.98,0.003,5,1000);
+	PIDturn(45,1.98,0.0035,5,1000);
 	wings.set_value(false);
 
 	
