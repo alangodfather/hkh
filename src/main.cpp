@@ -111,15 +111,15 @@ void autonomous() {
 	//new close side legal elim auto
 	/*
 	intake = -127;
-	PIDdrive(47,0.22,0.01,8,1350);
-	PIDdrive(-48,0.20,0.01,8,1350);
+	PIDdrive(47,0.2,0.01,4,1350);
+	PIDdrive(-48,0.16,0.01,4,1350);
 	delay(200);
 	PIDturn(90,1.9,0.00025,6,1000);
 	intake = 0;
 	PIDdriverightArc(-36,0.4,0.01,0.2,2200);
-	PIDdrive(14,0.22,0.01,5,1000);
+	PIDdrive(14,0.22,0.01,4,1000);
 	PIDturn(-42,1.99,0.00035,7,1000);
-	PIDdrive(12,0.5,0.01,5,1000);	//Drive forward to descore triball in corner
+	PIDdrive(12,0.25,0.01,4,1000);	//Drive forward to descore triball in corner
 	delay(150);
 	wings.set_value(true);
 	delay(150);
@@ -128,12 +128,12 @@ void autonomous() {
 	delay(200);
 	wings.set_value(false);
 	delay(200);
-	PIDdrive(7,0.5,0.01,5,1000);
+	PIDdrive(7,0.25,0.01,4,1000);
 	intake = 127;
 	delay(200);
 	PIDturn(-30,1.98,0.003,5,1000);
 	delay(200);
-	PIDdrive(36, 0.5, 0.01, 5, 1000);
+	PIDdrive(36, 0.25, 0.01, 4, 1000);
 	*/
 	
 	// far side auto elim and normal
