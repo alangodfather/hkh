@@ -347,3 +347,55 @@ void PIDdriveleftArc(int inches, double kP, double kI, double kD, int time){
 
 }
 
+void PIDfdriverightArc(int inches, double kP, double kI, double kD, int time) {
+    resetSens();
+    double target = InchtoTicks(inches);
+    double difference = target - left_front.get_position();
+    double power;
+    double integral = 0.0;
+    double past_difference = 0.0;
+    double derivative;
+
+    // Turning
+    double degrees = 40;
+    int r_power;
+    double r_integral = 0.0;
+    double r_past_difference = 0.0;
+    double r_derivative;
+    double r_difference;
+    double r_kP = -3.5;  // Adjust the sign to turn in the negative direction
+    double r_kI = 0;
+    double r_kD = 0;
+
+    int st = millis();
+
+    while ((fabs(target - left_front.get_position()) > 5 || (fabs(degrees - inertial.get_rotation()) > 0.75)) && time > millis() - st) {
+        pros::screen::print(TEXT_MEDIUM, 1, "distance driven: %f", difference);
+        pros::screen::print(TEXT_MEDIUM, 2, "rotation: %f", r_difference);
+
+        // Forward movement PID
+        past_difference = difference;
+        difference = target - left_front.get_position();
+        derivative = difference - past_difference;
+
+        if (fabs(target - left_front.get_position()) < 10) {
+            integral += difference;
+        }
+
+        power = difference * kP + integral * kI + derivative * kD;
+
+        // Turning PID
+        r_past_difference = r_difference;
+        r_difference = degrees - inertial.get_rotation();
+        r_derivative = r_difference - r_past_difference;
+
+        if (fabs(degrees - inertial.get_rotation()) < 2.5) {
+            r_integral += r_difference;
+        }
+
+        r_power = r_difference * r_kP;
+
+        // Adjust the sign of the power for both forward movement and turning
+        PowerdriveSide(SpeedCapLimit(-power * 2, 60), SpeedCapLimit(-power * 2 + r_power, 95));
+    }
+}

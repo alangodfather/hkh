@@ -21,5 +21,5 @@ void PIDdriveleftArc(int inches, double kP, double kI, double kD, int time);
 void resetSens();
 void timedcata(int time, int power);
 void resetcata();
-
+void PIDfdriverightArc(int inches, double kP, double kI, double kD, int time);
 #endif

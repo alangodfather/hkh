@@ -69,39 +69,58 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-
-	intake = -127;   // first triball push
-	PIDdrive(67,0.25,0.01,5,1350);
-	PIDturn(-52,1.9,0.00025,5,1000);
-	PIDdrive(-50,0.25,0.01,2.5,800);
-	PIDdrive(11,0.25,0.01,2.5,800);
-	intake = 0; 
-	PIDturn(-170,2.2,0.000275,7.5,1000);
+	
+	timedcata(30000,-115);
+	PIDturn(-26,2,0.0025,2,1000);
+	resetcata();
+	PIDdrive(-82,0.25,0.01,0.2,5000);
+	PIDdriverightArc(-45,0.6,0.01,0.2,2200);
+	PIDdrive(9,0.5,0.01,0.2,900);
+	PIDdrive(-11,0.5,0.01,0.2,1000);
+	PIDdrive(9,0.5,0.01,0.2,900);
+	PIDdrive(-11,0.5,0.01,0.2,1000);
+	PIDdrive(6,0.28,0.01,0.2,1000);
+	PIDturn(-90,2.2,0.0025,2,1000);
+	PIDdrive(-8,0.28,0.01,0.2,1000);
 	intake = 127;
-	delay(500);
-	PIDdrive(11,0.3,0.01,2.5,800);
-	intake = 0;
-	PIDdrive(-20,0.20,0.01,2.5,800);
-	PIDturn(121,2.2,0.000275,7.5,1000);
-	intake = -127;
+	PIDdrive(45,0.25,0.01,2,2000);
+	delay(200);
+	PIDturn(90,1.9,0.00025,5,1000);
 	delay(250);
-	PIDdrive(33,0.10,0.01,2.5,900);
-	PIDdrive(-13,0.25,0.01,2.5,800);
-	PIDturn(-125,1.9,0.0003,5,1000);
-	intake = 127;
-	PIDdrive(26,0.30,0.01,2.5,800);
-	PIDdrive(-5,0.20,0.01,2.5,800);
 	intake = 0;
-	PIDturn(-90,1.9,0.00025,5,1000);
-	PIDdrive(-36,0.25,0.01,1.5,800);
-	PIDturn(-90,1.9,0.00025,5,1000);
-	PIDdriveleftArc(-78,0.33,0.0025,1,1100);// last triball push
+	PIDdrive(-17,0.28,0.01,3,500);
 	delay(100);
-	PIDdrive(7,0.25,0.01,2.5,800);
 	PIDturn(-90,1.9,0.00025,5,1000);
-	PIDdriverightArc(-63,0.53,0.0025,1,1100);
-	delay(450);
-	PIDdrive(-3,0.25,0.01,2.5,800);
+	delay(100);
+	PIDdrive(-27,0.28,0.01,2,800);
+	delay(100);
+	PIDdrive(26,0.28,0.01,2,800);
+	delay(250);
+	PIDturn(-90,1.9,0.0025,4,1000);
+	delay(500);
+	PIDdrive(7,0.28,0.01,0.4,500);
+	wings.set_value(true);
+	PIDturn(-90,1.9,0.0025,4,1000);
+	PIDdrive(27,0.28,0.01,2,500);
+	delay(250);
+	PIDdrive(-25,1,0.01,0.2,800);
+	delay(250);
+	PIDdrive(27,0.28,0.01,2,500);
+	delay(250);
+	PIDdrive(-27,1,0.01,0.2,800);
+	wings.set_value(false);
+	PIDturn(90,1.8,0.0025,5,1000);
+	delay(250);
+	PIDdrive(10,0.28,0.01,2,800);
+	delay(200);
+	wings.set_value(true);
+	PIDturn(-90,1.8,0.0025,5,1000);
+	delay(250);
+	PIDdrive(27,0.28,0.01,2,500);
+	delay(250);
+	PIDdrive(24,0.28,0.01,2,500);
+	wings.set_value(false);
+
 	
 	
 	
@@ -145,31 +164,32 @@ void autonomous() {
 	PIDdrive(67,0.25,0.01,5,1350);
 	PIDturn(-52,1.9,0.00025,5,1000);
 	PIDdrive(-50,0.25,0.01,2.5,800);
-	PIDdrive(10,0.25,0.01,2.5,800);
+	PIDdrive(11,0.25,0.01,2.5,800);
 	intake = 0; 
 	PIDturn(-170,2.2,0.000275,7.5,1000);
 	intake = 127;
 	delay(500);
-	PIDdrive(10,0.25,0.01,2.5,800);
+	PIDdrive(11,0.3,0.01,2.5,800);
 	intake = 0;
 	PIDdrive(-20,0.20,0.01,2.5,800);
-	PIDturn(117,2.2,0.000275,7.5,1000);
+	PIDturn(121,2.2,0.000275,7.5,1000);
 	intake = -127;
 	delay(250);
 	PIDdrive(33,0.10,0.01,2.5,900);
 	PIDdrive(-13,0.25,0.01,2.5,800);
 	PIDturn(-125,1.9,0.0003,5,1000);
-	intake = 90;
-	PIDdrive(25,0.25,0.01,2.5,800);
-	PIDdrive(-6,0.20,0.01,2.5,800);
+	intake = 127;
+	PIDdrive(26,0.30,0.01,2.5,800);
+	PIDdrive(-5,0.20,0.01,2.5,800);
 	intake = 0;
 	PIDturn(-90,1.9,0.00025,5,1000);
-	PIDdrive(-37,0.25,0.01,2.5,800);
+	PIDdrive(-36,0.25,0.01,1.5,800);
 	PIDturn(-90,1.9,0.00025,5,1000);
-	PIDdriveleftArc(-77,0.33,0.0025,1,1100);// last triball push
-	PIDdrive(5,0.25,0.01,2.5,800);
+	PIDdriveleftArc(-78,0.33,0.0025,1,1100);// last triball push
+	delay(100);
+	PIDdrive(7,0.25,0.01,2.5,800);
 	PIDturn(-90,1.9,0.00025,5,1000);
-	PIDdriverightArc(-60,0.53,0.0025,1,1100);
+	PIDdriverightArc(-63,0.53,0.0025,1,1100);
 	delay(450);
 	PIDdrive(-3,0.25,0.01,2.5,800);
 	*/
