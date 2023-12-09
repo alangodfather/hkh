@@ -70,18 +70,18 @@ void competition_initialize() {}
  */
 void autonomous() {
 	intake = -127;   // first triball push
-	PIDdrive(68,0.25,0.01,5,1350);
+	PIDdrive(65,0.25,0.01,5,1350);
 	PIDturn(-52,1.9,0.00025,5,1000);
 	PIDdrive(-50,0.25,0.01,2.5,800);
-	PIDdrive(8,0.25,0.01,2.5,800);
+	PIDdrive(9,0.25,0.01,2.5,800);
 	intake = 0; 
-	PIDturn(-179,2.2,0.000275,7.5,1000);
+	PIDturn(-165,2.2,0.000275,7.5,1000);
 	intake = 100;
 	delay(200);
 	PIDdrive(11,0.25,0.01,2.5,800);
 	intake = 0;
 	PIDdrive(-20,0.20,0.01,2.5,800);
-	PIDturn(129,2.2,0.000275,7.5,1000);
+	PIDturn(123,2.2,0.000275,7.5,1000);
 	intake = -127;
 	delay(250);
 	PIDdrive(33,0.10,0.01,2.5,900);
@@ -89,14 +89,17 @@ void autonomous() {
 	PIDturn(-125,1.9,0.0003,5,1000);
 	intake = 70;
 	PIDdrive(25,0.25,0.01,2.5,800);
-	PIDdrive(-10,0.20,0.01,2.5,800);
+	PIDdrive(-5,0.20,0.01,2.5,800);
 	intake = 0;
 	PIDturn(-90,1.9,0.00025,5,1000);
-	PIDdrive(-37,0.25,0.01,2.5,800);
-	PIDturn(-90,1.9,0.00025,5,1000);
-	PIDdriveleftArc(-77,0.33,0.0025,1,1100);// last triball push
-	PIDdrive(5,0.25,0.01,2.5,800);
-	
+	PIDdrive(-46,0.25,0.01,2.5,800);
+	PIDturn(40,1.9,0.00025,5,1000);
+	PIDdrive(-46,0.25,0.01,2.5,800);
+	wings.set_value(true);
+	intake = -127;
+
+	wings.set_value(false);
+
 	
 	
 
@@ -108,23 +111,29 @@ void autonomous() {
 	//new close side legal elim auto
 	/*
 	intake = -127;
-	PIDdrive(47,0.22,0.01,5,1350);
-	PIDdrive(-47,0.25,0.01,5,1350);
-	PIDturn(75,1.9,0.00025,5);
-	PIDdriverightArc(-40,0.4,0.01,0.2,2200);
+	PIDdrive(47,0.22,0.01,8,1350);
+	PIDdrive(-48,0.20,0.01,8,1350);
+	delay(200);
+	PIDturn(90,1.9,0.00025,6,1000);
 	intake = 0;
-	PIDdrive(5,0.35,0.01,5,2000);
-	PIDturn(-180,2.2,0.000275,7.5);
-	PIDdriveleftArc(-67,0.30,0.0025,1,900);
-	delay(250);
-	PIDturn(-180,1.8,0.000275,7.5);
-	PIDdrive(24,0.22,0.01,5,800);
+	PIDdriverightArc(-36,0.4,0.01,0.2,2200);
+	PIDdrive(14,0.22,0.01,5,1000);
+	PIDturn(-42,1.99,0.00035,7,1000);
+	PIDdrive(12,0.5,0.01,5,1000);	//Drive forward to descore triball in corner
+	delay(150);
+	wings.set_value(true);
+	delay(150);
+	PIDturn(-55,1.98,0.003,5,1000);
+	PIDturn(45,1.98,0.0035,5,1000);
+	delay(200);
+	wings.set_value(false);
+	delay(200);
+	PIDdrive(7,0.5,0.01,5,1000);
 	intake = 127;
-	delay(300);
-	PIDdrive(-38,0.22,0.01,5,800);
-	PIDturn(-180,1.82,0.000275,7.5);
-	intake = 0;
-	
+	delay(200);
+	PIDturn(-30,1.98,0.003,5,1000);
+	delay(200);
+	PIDdrive(36, 0.5, 0.01, 5, 1000);
 	*/
 	
 	// far side auto elim and normal
